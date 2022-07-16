@@ -1,0 +1,121 @@
+:root{
+  --dark-violet: rgb(35, 24, 44);
+  --light-violet: rgb(164, 149, 216);
+  --grey-violet: rgb(134, 131, 145);
+  --medium-violet: rgb(166, 161, 184);
+  --light-blue: rgb(174, 226, 215)
+}
+body {
+    font-family: monospace;
+    background-color: var(--dark-violet);
+    color: var(--light-blue);
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 420px;
+    max-width: 588px;
+    text-align: center;
+}
+.contDiasExp{
+  display: flex;
+  justify-content: center;
+}
+.contDiasDeMarcha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contDiasDeDesc{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#cenas, #desayunos, #ComidaMarchas{
+  border: 1px solid var(--light-violet);
+  padding: 10px;
+  border-radius: 5px;
+}
+p{
+  color: var(--grey-violet);
+}
+.contUniDesay, .contUniMarcha{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px 0px 10px 0px;
+}
+#repiteLabel{
+  width: 150px;
+  margin: 5px 5px 5px 55px;
+  text-align: end;
+}
+#pLabel{
+  width: 80px;
+  margin: 5px 5px 5px 55px;
+  text-align: end;
+}
+input[type="button"]{
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid var(--light-blue);
+  border-radius: 3px;
+}
+select{
+  padding: 3px 3px;  
+  border: 1px solid var(--light-blue);
+  margin: 5px;
+  border-radius: 3px;
+}
+input[type="number"] {
+  padding: 3px 3px;
+  height: 19px;
+  border: 1px solid var(--light-blue);
+  margin: 5px;
+  border-radius: 3px;
+  max-width: 40px;
+}
+#cantidadCenas{
+  max-width: 150px;
+}
+#marcha-text{
+  display: inline-block;
+  color:rgb(134, 131, 145);
+  /* position: absolute;
+  top: 140px;
+  right: 255px; */
+}
+#descanso-text{
+  color:rgb(134, 131, 145);
+  /* position: absolute;
+  top: 175px;
+  right: 220px; */
+}
+input[type = "text"] {
+    padding: 3px 3px;
+    height: 19px;
+    border: 1px solid var(--light-blue);
+    margin: 5px;
+    border-radius: 3px;
+    max-width: 200px;
+  }
+input[type = "button"] {
+  background-color: rgb(166, 161, 184);
+}
+#listaDeIngredientes{
+  border: 1px solid var(--light-violet);
+  padding: 15px;
+}
+tbody {
+  padding: 8px 3px;
+  height: 19px;
+  border: 1px solid var(--light-violet);
+  margin: 20px;
+  border-radius: 3px;
+  max-width: 200px;
+}
+tr >th {
+  width: 200px;
+}
+tr th ~ th {
+  width: 100px;
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0">
+    <link rel="stylesheet" href="cal_alim.css">
+    <title>calculo de provisiones para mantañismo</title>
+</head>
+<body>
+    <script src="cal_alim.js"></script>
+    <header>
+        <h1>Computo de alimentacion para expediciones de montaña</h1>
+    </header>
+    <form action="" id="datosInicio">
+        <div id="itinerarios">
+            <div class="contDiasExp">
+                <label for="dias" 
+                class="diasExp">Dias de expedición: </label>
+                <div id="dias"></div><br/>
+            </div>   
+            <div class="contDiasDeMarcha">
+                <label for="marchas">Dias de marcha</label>
+                <input type="number" type="inputchico" 
+                name="marchas" id="marchas">
+                <label id="marcha-text">Computa solo cena</label>
+            </br>
+            </div>
+            <div class="contDiasDeDesc">
+                <label for="descanso">Dias de descansos</label>
+                <input type="number"  name="descanso" id="descanso">
+                <label id="descanso-text">Computa almurzo y cena</label>
+            </br>
+            </div>            
+            <label for="integrantes" >integrantes</label>
+            <input type="number" name="integrantes" 
+            id="integrantes"><br/>
+            <input type="button" form="datosInicio" 
+            onclick="arranque()" value="Datos Expe.">
+        </div>    
+           
+    </form>
+    <h1>
+<!-- COMIDAS --> 
+    </h1>
+    <form id="cenas">
+        <label for="">Comidas</label>
+        <p id="comidasYPorciones"></p> 
+        <div id="platos">
+            
+            <label>Plato</label>
+            <input type="text" name="plato" id="plato"><br/>
+            <label>Dias que repetis el plato</label>
+            <input type="number" id="cantidadCenas" 
+            placeholder="veces que repite plato">
+            <input type="button" value="cargar plato" 
+            onclick="javascript:cargarPlato();">
+        </div>
+        <div>
+            <label>Ingrediente</label>
+            <input type="text" id="ingredientesCenas" 
+            name="ingredientesCenas">
+            <label>Unidades</label>
+            <select name="" id="unidades">
+                <option value="gs.">gs.</option>
+                <option value="ud.">ud.</option>
+                <option value="paq.">paq.</option>
+            </select>
+            <label for="">Cantidad</label>
+            <input type="number" id="cantidadIngCenas" 
+            placeholder="cantidad por porcion">
+            <input type="button" onclick="javascript:saveIngredientes();" 
+            value="sumar ingrediente">
+            <input type="button" 
+            onclick="javascript:limpiarIngredientes();" value="Limpiar">
+        </div>
+    </form>
+    <table class="table table-hover" id="listaDeIngredientes">
+        <thead>
+            <h4>Lista de ingredientes</h4>
+            <tr>
+                <th id="tabla1">Plato</th>
+                <th id="tabla1">Ingrediente</th>
+                <th id="tabla1">Unidades</th>
+                <th id="tabla1">Cantidad porcion</th>
+                <th id="tabla1">Cantidad total</th>
+                <th id="tabla1">Comidas Computadas</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>
+<h1>
+<!-- DESAYUNOS -->
+</h1>
+    <form action="" id="desayunos">
+        <div id="menuDesayuno">
+            <label for="">Desayuno</label>
+            <p id="labelDesayunos"> </p>            
+        </div>
+        <div id="ContIngredientesDesayuno">
+            <div class="contUniDesay">
+                <label>Ingrediente</label>
+                <input type="text" id="ingredientesDesayuno" 
+                name="ingredientesDesayuno">
+                <label id="repiteLabel">Dias que repetis este alimento</label>
+                <input type="number" id="repiteDesayuno" 
+                placeholder="veces que repite el alimento">
+            </div>
+            <div class="contUniDesay">
+                <label>Unidades</label>
+                <select name="" id="unidadesDesayuno">
+                    <option value="gs.">gs.</option>
+                    <option value="ud.">ud.</option>
+                    <option value="paq.">paq.</option>
+                </select>            
+                <label for=""id="pLabel">Cantidad por porcion</label>
+                <input type="number" id="cantidadIngDesayuno" 
+                placeholder="cantidad por porcion">            
+                <input type="button" onclick="javascript:saveIngredientesDesayuno();"
+                value="sumar ingrediente">
+                <input type="button" onclick="javascript:limpiarIngredientes();"
+                value="Limpiar">
+            </div>
+        </div>
+    </form>
+<h1>
+<!-- MARCHAS -->   
+</h1>
+<form action="" id="ComidaMarchas">
+    <div id="menuMarchas">
+        <label for="">Marchas</label>
+        <p id="labelMarchas"></p>            
+    </div>
+    <div id="ContIngredientesMarchas">
+        <div class="contUniMarcha">
+            <label>Ingrediente</label>
+            <input type="text" id="ingredientesMarchas" 
+            name="ingredientesMarchas">
+            <label id="repiteLabel">Veces que repetis el alimento</label>
+                <input type="number" id="repiteMarcha" 
+                placeholder="veces que repite el alimento">        
+        </div>
+        <div class="contUniMarcha">
+            <label>Unidades</label>
+            <select name="" id="unidadesMarchas">
+                <option value="gs.">gs.</option>
+                <option value="ud.">ud.</option>
+                <option value="paq.">paq.</option>
+            </select>
+            <label for="cantidadIngMarchas" id="pLabel">Cantidad por porcion</label>
+            <input type="number" id="cantidadIngMarchas" 
+            placeholder="cantidad por porcion">
+            <input type="button" onclick="javascript:saveIngredientes();" 
+            value="sumar ingrediente">
+            <input type="button" onclick="javascript:limpiarIngredientes();" 
+            value="Limpiar">
+        </div>
+    </div>
+</form>
+    <table class="table table-hover" id="listaCompras">
+        <thead>
+            <h4>Lista de compras</h4>
+            <tr style="">
+                <th>Plato</th>
+                <th>Ingrediente</th>
+                <th>Unidades</th>
+                <th>Cantidad porcion</th>
+                <th>Cantidad total</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>

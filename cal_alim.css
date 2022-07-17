@@ -3,7 +3,9 @@
   --light-violet: rgb(164, 149, 216);
   --grey-violet: rgb(134, 131, 145);
   --medium-violet: rgb(166, 161, 184);
-  --light-blue: rgb(174, 226, 215)
+  --light-blue: rgb(174, 226, 215);
+  --light-red: rgb(190, 50, 50);
+  --dark-red: rgb(104, 3, 3);
 }
 body {
     font-family: monospace;
@@ -93,7 +95,7 @@ input[type="number"] {
 input[type = "text"] {
     padding: 3px 3px;
     height: 19px;
-    border: 1px solid var(--light-blue);
+    border: 2px solid var(--light-blue);
     margin: 5px;
     border-radius: 3px;
     max-width: 200px;
@@ -101,14 +103,14 @@ input[type = "text"] {
 input[type = "button"] {
   background-color: rgb(166, 161, 184);
 }
-#listaDeIngredientes{
-  border: 1px solid var(--light-violet);
+#listaDeIngredientes, #listaDeIngredientesDesaYMarch{
+  border: 1px solid var(--light-red);
   padding: 15px;
 }
 tbody {
   padding: 8px 3px;
   height: 19px;
-  border: 1px solid var(--light-violet);
+  border: 1px solid var(--light-red);
   margin: 20px;
   border-radius: 3px;
   max-width: 200px;
@@ -118,4 +120,8 @@ tr >th {
 }
 tr th ~ th {
   width: 100px;
+}
+#listaCompras{
+  border: 3px dashed var(--dark-red);
+  padding: 15px;
 }

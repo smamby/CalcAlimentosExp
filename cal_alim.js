@@ -72,8 +72,15 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad){
         subtotal : icantidad * integ * diasPlato,
         comidasComp : (comidasComputadas)+" de "+cenas/integ,
     };
-    ingredientesDeCenas.push(nuevoIngrediente);
-    imprimirListaIngredientes();
+    if (comidasComputadas>(cenas/integ)){
+        if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+            ingredientesDeCenas.push(nuevoIngrediente);
+        }else{};
+    } else {
+        ingredientesDeCenas.push(nuevoIngrediente);
+    }
+    //ingredientesDeCenas.push(nuevoIngrediente); // arreglar error de logica
+    imprimirListaIngredientes(ingredientesDeCenas);
     console.log(ingredientesDeCenas); 
     //console.log(typeof(ingredientesDeCenas[0].unidad)) 
     document.getElementById('ingredientesCenas').value = ""; 
@@ -85,12 +92,12 @@ console.log(platosCenas)
 
 //
 
-function obtenerLista(){
-    return ingredientesDeCenas;
-}
+// function obtenerLista(){
+//     return ingredientesDeCenas;
+// }
 
-function imprimirListaIngredientes(){
-    var listaDeIngredientes = obtenerLista();
+function imprimirListaIngredientes(lista){
+    var listaDeIngredientes = lista //obtenerLista();
     var tbody = document.querySelector("#listaDeIngredientes tbody");
     tbody.innerHTML = "";
     
@@ -135,34 +142,111 @@ function limpiarIngredientes(){
 
 function saveIngredientesDesayuno(){
     var platoNombre = 'Desayuno';
-    var ingredienteDesInput = document.getElementById('ingredientesDesayunos').value;
+    var ingredienteDesInput = document.getElementById('ingredientesDesayuno').value;
     var ingUnidadesDesInput = document.getElementById('unidadesDesayuno').value;
     var ingCantidadDesInput = document.getElementById('cantidadIngDesayuno').value;
     cargarIngDeDesayunos(platoNombre,ingredienteDesInput,ingUnidadesDesInput,ingCantidadDesInput);
 }
 
 var ingredientesDeDesayuno = [];
-
+var acumuladoDesayuno=0;
 function cargarIngDeDesayunos(dplato,dingrediente,dunidad,dcantidad){    
     var vecesRepiteDesayuno = parseInt(document.getElementById('repiteDesayuno').value);
     var integrantes = document.getElementById('integrantes').value;
-    var integ = parseInt(integrantes);      
-
+    var integ = parseInt(integrantes);   
+    acumuladoDesayuno+=vecesRepiteDesayuno;
     var nuevoIngredienteDesayuno = {
         plato : dplato,
         ingrediente : dingrediente,
         unidad : dunidad,
         cantidad : dcantidad,
         subtotal : dcantidad * integ * vecesRepiteDesayuno,
-        comidasComp : (diasDeDesayuno)+" de "+cenas/integ,
-    };
-    ingredientesDeDesayuno.push(nuevoIngredienteDesayuno);
-    imprimirListaIngredientes();
+        comidasComp : (acumuladoDesayuno)+" de "+diasDeDesayuno,
+    };    
+    if (acumuladoDesayuno>diasDeDesayuno){
+        if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+            ingredientesDeDesayuno.push(nuevoIngredienteDesayuno);
+        }
+    } else {
+        ingredientesDeDesayuno.push(nuevoIngredienteDesayuno);
+    }    
+    
+    imprimirListaIngredientesDeDesayunosYMarchas(ingredientesDeDesayuno);
     console.log(ingredientesDeDesayuno); 
     //console.log(typeof(ingredientesDeDesayuno[0].unidad)) 
-    document.getElementById('ingredientesCenas').value = ""; 
+    document.getElementById('ingredientesDesayuno').value = ""; 
     //document.getElementById('unidades').value = "";
     //document.getElementById('cantidadIngCenas').value = ""; 
+}
+
+//MARCHAS
+
+function saveIngredientesMarchas(){
+    var platoNombre = 'Marcha';
+    var ingredienteMarchInput = document.getElementById('ingredientesMarchas').value;
+    var ingUnidadesMarchInput = document.getElementById('unidadesMarchas').value;
+    var ingCantidadMarchInput = document.getElementById('cantidadIngMarchas').value;
+    cargarIngDeDesayunos(platoNombre,ingredienteMarchInput,ingUnidadesMarchInput,ingCantidadMarchInput);
+}
+
+var ingredientesDeMarchas = [];
+var acumuladoMarchas=0;
+function cargarIngDeMarchas(dplato,dingrediente,dunidad,dcantidad){    
+    var vecesRepiteMarchas = parseInt(document.getElementById('repiteMarcha').value);
+    var integrantes = document.getElementById('integrantes').value;
+    var integ = parseInt(integrantes);   
+    acumuladoMarchas+=vecesRepiteMarchas;
+    var nuevoIngredienteMarchas = {
+        plato : dplato,
+        ingrediente : dingrediente,
+        unidad : dunidad,
+        cantidad : dcantidad,
+        subtotal : dcantidad * integ * vecesRepiteMarchas,
+        comidasComp : (acumuladoMarchas)+" de "+diasDeMarcha,
+    };    
+    if (acumuladoMarchas>diasDeMarcha){
+        if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+            ingredientesDeMarchas.push(nuevoIngredienteMarchas);
+        }
+    } else {
+        ingredientesDeMarchas.push(nuevoIngredienteMarchas);
+    }    
+    
+    imprimirListaIngredientesDeDesayunosYMarchas(ingredientesDeMarchas);
+    console.log(ingredientesDeMarchas); 
+    //console.log(typeof(ingredientesDeMarchas[0].unidad)) 
+    document.getElementById('ingredientesMarchas').value = ""; 
+    //document.getElementById('unidades').value = "";
+    //document.getElementById('cantidadIngCenas').value = ""; 
+}
+
+// imprimir lista desayunos y merchas
+function imprimirListaIngredientesDeDesayunosYMarchas(lista){
+    var listaDeIngredientes = lista //obtenerLista();
+    var tbody = document.querySelector("#listaDeIngredientesDesaYMarch tbody");
+    tbody.innerHTML = "";
+    
+    //console.log(typeof(ingredientesDeCenas[0].unidad))
+
+    for(var i = 0; i < listaDeIngredientes.length; i++){
+        var row = tbody.insertRow(i);
+        var platoCell = row.insertCell(0);
+        var ingredienteCell = row.insertCell(1);
+        var unidadesCell = row.insertCell(2);
+        var cantidadCell = row.insertCell(3);
+        var subtotalCell = row.insertCell(4);
+        var ComidasCompCell = row.insertCell(5);
+        
+        platoCell.innerHTML = listaDeIngredientes[i].plato;
+        ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
+        unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
+        //console.log(unidadesCell.innerHTML)
+        cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
+        subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
+        ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
+
+        tbody.appendChild(row);               
+    }
 }
 
 

@@ -42,7 +42,7 @@
            
     </form>
     <h1>
-<!-- COMIDAS --> 
+    <!-- COMIDAS --> 
     </h1>
     <form id="cenas">
         <label for="">Comidas</label>
@@ -78,7 +78,7 @@
     </form>
     <table class="table table-hover" id="listaDeIngredientes">
         <thead>
-            <h4>Lista de ingredientes</h4>
+            <h4>Lista de ingredientes para comidas</h4>
             <tr>
                 <th id="tabla1">Plato</th>
                 <th id="tabla1">Ingrediente</th>
@@ -95,9 +95,9 @@
             
         </tfoot>
     </table>
-<h1>
-<!-- DESAYUNOS -->
-</h1>
+    <h1>
+    <!-- DESAYUNOS -->
+    </h1>
     <form action="" id="desayunos">
         <div id="menuDesayuno">
             <label for="">Desayuno</label>
@@ -129,44 +129,63 @@
             </div>
         </div>
     </form>
-<h1>
-<!-- MARCHAS -->   
-</h1>
-<form action="" id="ComidaMarchas">
-    <div id="menuMarchas">
-        <label for="">Marchas</label>
-        <p id="labelMarchas"></p>            
-    </div>
-    <div id="ContIngredientesMarchas">
-        <div class="contUniMarcha">
-            <label>Ingrediente</label>
-            <input type="text" id="ingredientesMarchas" 
-            name="ingredientesMarchas">
-            <label id="repiteLabel">Veces que repetis el alimento</label>
-                <input type="number" id="repiteMarcha" 
-                placeholder="veces que repite el alimento">        
+    <h1>
+    <!-- MARCHAS -->   
+    </h1>
+    <form action="" id="ComidaMarchas">
+        <div id="menuMarchas">
+            <label for="">Marchas</label>
+            <p id="labelMarchas"></p>            
         </div>
-        <div class="contUniMarcha">
-            <label>Unidades</label>
-            <select name="" id="unidadesMarchas">
-                <option value="gs.">gs.</option>
-                <option value="ud.">ud.</option>
-                <option value="paq.">paq.</option>
-            </select>
-            <label for="cantidadIngMarchas" id="pLabel">Cantidad por porcion</label>
-            <input type="number" id="cantidadIngMarchas" 
-            placeholder="cantidad por porcion">
-            <input type="button" onclick="javascript:saveIngredientes();" 
-            value="sumar ingrediente">
-            <input type="button" onclick="javascript:limpiarIngredientes();" 
-            value="Limpiar">
+        <div id="ContIngredientesMarchas">
+            <div class="contUniMarcha">
+                <label>Ingrediente</label>
+                <input type="text" id="ingredientesMarchas" 
+                name="ingredientesMarchas">
+                <label id="repiteLabel">Veces que repetis el alimento</label>
+                    <input type="number" id="repiteMarcha" 
+                    placeholder="veces que repite el alimento">        
+            </div>
+            <div class="contUniMarcha">
+                <label>Unidades</label>
+                <select name="" id="unidadesMarchas">
+                    <option value="gs.">gs.</option>
+                    <option value="ud.">ud.</option>
+                    <option value="paq.">paq.</option>
+                </select>
+                <label for="cantidadIngMarchas" id="pLabel">Cantidad por porcion</label>
+                <input type="number" id="cantidadIngMarchas" 
+                placeholder="cantidad por porcion">
+                <input type="button" onclick="javascript:saveIngredientesMarchas();" 
+                value="sumar ingrediente">
+                <input type="button" onclick="javascript:limpiarIngredientes();" 
+                value="Limpiar">
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+    <table class="table table-hover" id="listaDeIngredientesDesaYMarch">
+        <thead>
+            <h4>Lista de ingredientes para desayunos y marchas</h4>
+            <tr>
+                <th id="tabla1">Plato</th>
+                <th id="tabla1">Ingrediente</th>
+                <th id="tabla1">Unidades</th>
+                <th id="tabla1">Cantidad porcion</th>
+                <th id="tabla1">Cantidad total</th>
+                <th id="tabla1">Comidas Computadas</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>
     <table class="table table-hover" id="listaCompras">
         <thead>
             <h4>Lista de compras</h4>
-            <tr style="">
+            <tr>
                 <th>Plato</th>
                 <th>Ingrediente</th>
                 <th>Unidades</th>

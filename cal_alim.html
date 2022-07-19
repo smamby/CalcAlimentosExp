@@ -17,25 +17,26 @@
         <div id="itinerarios">
             <div class="contDiasExp">
                 <label for="dias" 
-                class="diasExp">Dias de expedición: </label>
-                <div id="dias"></div><br/>
+                class="diasExp">Dias de expedición</label>
+                <div id="dias"></div>
+                <br/>
             </div>   
             <div class="contDiasDeMarcha">
                 <label for="marchas">Dias de marcha</label>
                 <input type="number" type="inputchico" 
-                name="marchas" id="marchas">
+                name="marchas" id="marchas" value="0">
                 <label id="marcha-text">Computa solo cena</label>
             </br>
             </div>
             <div class="contDiasDeDesc">
                 <label for="descanso">Dias de descansos</label>
-                <input type="number"  name="descanso" id="descanso">
+                <input type="number"  name="descanso" id="descanso" value="0">
                 <label id="descanso-text">Computa almurzo y cena</label>
             </br>
             </div>            
             <label for="integrantes" >integrantes</label>
             <input type="number" name="integrantes" 
-            id="integrantes"><br/>
+            id="integrantes" value ="1"><br/>
             <input type="button" form="datosInicio" 
             onclick="arranque()" value="Datos Expe.">
         </div>    
@@ -47,8 +48,7 @@
     <form id="cenas">
         <label for="">Comidas</label>
         <p id="comidasYPorciones"></p> 
-        <div id="platos">
-            
+        <div id="platos">            
             <label>Plato</label>
             <input type="text" name="plato" id="plato"><br/>
             <label>Dias que repetis el plato</label>

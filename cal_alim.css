@@ -21,6 +21,12 @@ body {
 .contDiasExp{
   display: flex;
   justify-content: center;
+  height: 35px;
+  font-size: large;
+}
+#dias{
+  font-size: large;
+  font-weight: bold;
 }
 .contDiasDeMarcha {
   display: flex;

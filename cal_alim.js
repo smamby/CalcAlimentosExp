@@ -1,6 +1,11 @@
 var diasDescanso = 0;
 var diasMarcha = 0;  
 var integrantes=1;
+var datosExpeCargados=false;
+function preArranque() {
+    document.getElementById('marchas').focus();
+}
+preArranque();
 
 function arranque(){    
     diasMarcha = document.getElementById('marchas').value;
@@ -19,19 +24,26 @@ function arranque(){
     console.log(dias);
     //console.log(diasDescanso);
     //console.log(integrantes);
-    console.log(cenasTotales);    
-    var impDias = document.getElementById("dias");
-    impDias.innerHTML = ':  '+dias;
-    var impComYPorc = document.getElementById("comidasYPorciones");
-    impComYPorc.innerHTML = cenasTotales/integ
-        +" comidas por "+integ+" integrantes = "+cenasTotales+" porciones";
-    var impDiasMarcha = document.getElementById("labelMarchas");
-    impDiasMarcha.innerHTML = diasDeMarcha
-        +" dias y "+diasDeMarcha*integ+" porciones";
-    var impDesayunos = document.getElementById("labelDesayunos");
-    impDesayunos.innerHTML = diasDeDesayuno
-        +" dias y "+diasDeDesayuno*integ+" porciones";
-}
+    console.log(cenasTotales); 
+    if (cenasTotales > 0){   
+        datosExpeCargados=true;
+        var impDias = document.getElementById("dias");
+        impDias.innerHTML = ':  '+dias;
+        var impComYPorc = document.getElementById("comidasYPorciones");
+        impComYPorc.innerHTML = cenasTotales/integ
+            +" comidas por "+integ+" integrantes = "+cenasTotales+" porciones";
+        var impDiasMarcha = document.getElementById("labelMarchas");
+        impDiasMarcha.innerHTML = diasDeMarcha
+            +" dias y "+diasDeMarcha*integ+" porciones";
+        var impDesayunos = document.getElementById("labelDesayunos");
+        impDesayunos.innerHTML = diasDeDesayuno
+            +" dias y "+diasDeDesayuno*integ+" porciones";
+    } else {
+        condPlatoCargado();
+        // alert("Carga los dias de expedicion");
+        // document.getElementById('marchas').focus();
+    };
+};
 
 var cenas;
 var platosCenas = [];
@@ -40,33 +52,51 @@ var comidasComputadas=0;
 var diasDeDesayuno=0;
 var diasDeMarcha=0;
 var cargaIngrediente=true;
+var platoCargado=false;
 
-function cargarPlato(){   
-    if(!cargaIngrediente){
-        alert('No cargo ingredientes para el plato anterior')
-    } else {
-        cargaIngrediente=false;
-        var platoNombre = document.getElementById('plato').value;
-        var diasPlato = parseInt(document.getElementById('cantidadCenas').value);
-        var integrantes = document.getElementById('integrantes').value;
-        var integ = parseInt(integrantes);
-        platosCenas.push(platoNombre)
-        //var cantidadPlato = diasPlato * integ;    
-        console.log(platoNombre);
-        console.log(platosCenas);
-        comidasComputadas += diasPlato;
-        console.log(comidasComputadas);
-    };
+function cargarPlato(){   //comidasComputadas tabla de hash
+    if (datosExpeCargados===true) {
+        if(!cargaIngrediente){
+            alert('No cargaste ingredientes para el plato anterior')
+        } else {
+            if(document.getElementById('plato').value!="" 
+            && document.getElementById('cantidadCenas').value!=0){        
+                cargaIngrediente=false;
+                var platoNombre = document.getElementById('plato').value;
+                var diasPlato = parseInt(document.getElementById('cantidadCenas').value);
+                var integrantes = document.getElementById('integrantes').value;
+                var integ = parseInt(integrantes);
+                platosCenas.push(platoNombre)
+                //var cantidadPlato = diasPlato * integ;    
+                console.log(platoNombre);
+                console.log(platosCenas);
+                comidasComputadas += diasPlato;
+                console.log(comidasComputadas);
+                platoCargado=true;
+            } else {
+                alert("carga algun plato")
+                document.getElementById('plato').focus();
+            }
+        };
+    }else {
+        condPlatoCargado();
+        // alert("Carga los dias de expedicion");
+        // document.getElementById('marchas').focus();
+    };    
 };
 
 function saveIngredientes(){
-    cargaIngrediente=true;
-    var platoNombre = document.getElementById('plato').value;
-    var ingredienteInput = document.getElementById('ingredientesCenas').value;
-    var ingUnidadesInput = document.getElementById('unidades').value;
-    var ingCantidadInput = document.getElementById('cantidadIngCenas').value;
-    cargarIngDeCena(platoNombre,ingredienteInput,ingUnidadesInput,ingCantidadInput);
-}
+    if(condCargarIngredientesPlato()){
+        cargaIngrediente=true;
+        if(segundaCondCargaIng()){
+            var platoNombre = document.getElementById('plato').value;
+            var ingredienteInput = document.getElementById('ingredientesCenas').value;
+            var ingUnidadesInput = document.getElementById('unidades').value;
+            var ingCantidadInput = document.getElementById('cantidadIngCenas').value;
+            cargarIngDeCena(platoNombre,ingredienteInput,ingUnidadesInput,ingCantidadInput);
+        }
+    };
+};
 
 var ingredientesDeCenas = [];
 
@@ -82,6 +112,7 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad){
         cantidad : icantidad,
         subtotal : icantidad * integ * diasPlato,
         comidasComp : (comidasComputadas)+" de "+cenas/integ,
+        checkDel : false,
     };
     if (comidasComputadas>(cenas/integ)){
         if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
@@ -104,21 +135,17 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad){
 
 console.log(platosCenas) 
 
-//
-
-// function obtenerLista(){
-//     return ingredientesDeCenas;
-// }
-
 function imprimirListaIngredientes(lista){
     var listaDeIngredientes = lista //obtenerLista();
     var tbody = document.querySelector("#listaDeIngredientes tbody");
-    tbody.innerHTML = "";
-    var checkBox = document.createElement("input");
-    checkBox.setAttribute("type","checkbox");
+    tbody.innerHTML = "";    
     //console.log(typeof(ingredientesDeCenas[0].unidad))
 
     for(var i = 0; i < listaDeIngredientes.length; i++){
+        var checkBox = document.createElement("input");
+        checkBox.setAttribute("type","checkbox");
+        checkBox.checked=false;        
+        checkBox.setAttribute("id",`cena${i}`);
         var row = tbody.insertRow(i);
         var platoCell = row.insertCell(0);
         var ingredienteCell = row.insertCell(1);
@@ -126,6 +153,7 @@ function imprimirListaIngredientes(lista){
         var cantidadCell = row.insertCell(3);
         var subtotalCell = row.insertCell(4);
         var ComidasCompCell = row.insertCell(5);
+        var checkboxForDelete = row.insertCell(6)
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
         ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
@@ -134,14 +162,15 @@ function imprimirListaIngredientes(lista){
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
         subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
         ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
+        checkboxForDelete.appendChild(checkBox);
 
         tbody.appendChild(row);               
     }
 }
 
 function limpiarIngredientes(){
-    document.getElementById('plato').value = "";
-    document.getElementById('cantidadCenas').value = "";
+    //document.getElementById('plato').value = "";
+    //document.getElementById('cantidadCenas').value = "";
     document.getElementById('ingredientesCenas').value = "";
     document.getElementById('unidades').value = "";
     document.getElementById('cantidadIngCenas').value = "";
@@ -156,11 +185,17 @@ function limpiarIngredientes(){
 /// DESAYUNOS
 
 function saveIngredientesDesayuno(){
-    var platoNombre = 'Desayuno';
-    var ingredienteDesInput = document.getElementById('ingredientesDesayuno').value;
-    var ingUnidadesDesInput = document.getElementById('unidadesDesayuno').value;
-    var ingCantidadDesInput = document.getElementById('cantidadIngDesayuno').value;
-    cargarIngDeDesayunos(platoNombre,ingredienteDesInput,ingUnidadesDesInput,ingCantidadDesInput);
+    if(datosExpeCargados===true){
+        var platoNombre = 'Desayuno';
+        if (segundaCondCargaIngDes()){
+            var ingredienteDesInput = document.getElementById('ingredientesDesayuno').value;
+            var ingUnidadesDesInput = document.getElementById('unidadesDesayuno').value;
+            var ingCantidadDesInput = document.getElementById('cantidadIngDesayuno').value;
+            cargarIngDeDesayunos(platoNombre,ingredienteDesInput,ingUnidadesDesInput,ingCantidadDesInput);
+        }
+    } else {
+        condPlatoCargado()
+    }
 }
 
 var ingredientesDeDesayuno = [];
@@ -176,10 +211,12 @@ function cargarIngDeDesayunos(dplato,dingrediente,dunidad,dcantidad){
         unidad : dunidad,
         cantidad : dcantidad,
         subtotal : dcantidad * integ * vecesRepiteDesayuno,
-        comidasComp : (acumuladoDesayuno)+" de "+diasDeDesayuno,
+        comidasComp : 'NO DATA',//(acumuladoDesayuno)+" de "+diasDeDesayuno,
+        checkDel : false,
     };    
     if (acumuladoDesayuno>diasDeDesayuno){
-        if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+        if(confirm('Superaste las comidas necearias,'
+        +' quiere sumarla igualmente')){
             ingredientesDeDesayuno.push(nuevoIngredienteDesayuno);
         }
     } else {
@@ -197,11 +234,17 @@ function cargarIngDeDesayunos(dplato,dingrediente,dunidad,dcantidad){
 //MARCHAS
 
 function saveIngredientesMarchas(){
-    var platoNombre = 'Marcha';
-    var ingredienteMarchInput = document.getElementById('ingredientesMarchas').value;
-    var ingUnidadesMarchInput = document.getElementById('unidadesMarchas').value;
-    var ingCantidadMarchInput = document.getElementById('cantidadIngMarchas').value;
-    cargarIngDeDesayunos(platoNombre,ingredienteMarchInput,ingUnidadesMarchInput,ingCantidadMarchInput);
+    if(datosExpeCargados===true){
+        var platoNombre = 'Marcha';
+        if (segundaCondCargaIngMar()){
+            var ingredienteMarchInput = document.getElementById('ingredientesMarchas').value;
+            var ingUnidadesMarchInput = document.getElementById('unidadesMarchas').value;
+            var ingCantidadMarchInput = document.getElementById('cantidadIngMarchas').value;
+            cargarIngDeDesayunos(platoNombre,ingredienteMarchInput,ingUnidadesMarchInput,ingCantidadMarchInput);
+        };
+    } else {
+        condPlatoCargado();
+    };
 }
 
 var ingredientesDeMarchas = [];
@@ -217,10 +260,12 @@ function cargarIngDeMarchas(dplato,dingrediente,dunidad,dcantidad){
         unidad : dunidad,
         cantidad : dcantidad,
         subtotal : dcantidad * integ * vecesRepiteMarchas,
-        comidasComp : (acumuladoMarchas)+" de "+diasDeMarcha,
+        comidasComp : 'NO DATA', //(acumuladoMarchas)+" de "+diasDeMarcha,
+        checkDel : false,
     };    
     if (acumuladoMarchas>diasDeMarcha){
-        if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+        if(confirm('Superaste las comidas necearias,'
+         +' quiere sumarla igualmente')){
             ingredientesDeMarchas.push(nuevoIngredienteMarchas);
         }
     } else {
@@ -244,6 +289,10 @@ function imprimirListaIngredientesDeDesayunosYMarchas(lista){
     //console.log(typeof(ingredientesDeCenas[0].unidad))
 
     for(var i = 0; i < listaDeIngredientes.length; i++){
+        var checkBox = document.createElement("input");
+        checkBox.setAttribute("type","checkbox");
+        checkBox.checked=false;        
+        checkBox.setAttribute("id",`desYMar${i}`);
         var row = tbody.insertRow(i);
         var platoCell = row.insertCell(0);
         var ingredienteCell = row.insertCell(1);
@@ -251,6 +300,8 @@ function imprimirListaIngredientesDeDesayunosYMarchas(lista){
         var cantidadCell = row.insertCell(3);
         var subtotalCell = row.insertCell(4);
         var ComidasCompCell = row.insertCell(5);
+        var checkboxForDelete = row.insertCell(6)
+        
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
         ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
@@ -259,9 +310,69 @@ function imprimirListaIngredientesDeDesayunosYMarchas(lista){
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
         subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
         ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
+        checkboxForDelete.append(checkBox);
+        //checkboxForDelete.append(`<input type="checkbox" id="cena+${i}" name="cena+${i}">`);
+        console.log(i);
 
         tbody.appendChild(row);               
     }
 }
 
+function borrarIngredientesCena(){
+    console.log(ingredientesDeCenas)
+    var ingCenaBorrar = [];
+    var countPlatos = [];
+    platosCenas = [];
+    comidasComputadas = 0;
+    for (i=0; i<ingredientesDeCenas.length;i++){        
+        if(!document.getElementById(`cena${i}`).checked){
+            ingCenaBorrar.push(ingredientesDeCenas[i])
+        };  
+    };
+    countPlatos = ingCenaBorrar.map(el => {
+        return el.plato
+    });
+    console.log(countPlatos);
+    for (i=0; i<ingCenaBorrar.length;i++){        
+        if(!platosCenas.includes(countPlatos[i])){
+            comidasComputadas += 1
+            platosCenas.push(countPlatos[i])
+        };
+    };
+    limpiarIngredientes();
+    console.log(ingCenaBorrar);
+    console.log(platosCenas);
+    ingredientesDeCenas = [...ingCenaBorrar];
+    imprimirListaIngredientes(ingredientesDeCenas);
+};
+
+function borrarIngredientesDesYMar(){
+    console.log(ingredientesDeDesayuno);
+    console.log(ingredientesDeMarchas);
+    var ingDeDesYMar = ingredientesDeDesayuno.concat([...ingredientesDeMarchas])
+    var ingDesYMarBorrar = [];
+    var newIngDeDesYMar = [];
+    //platosCenas = [];
+    //comidasComputadas = 0;
+    for (i=0; i<ingDeDesYMar.length;i++){        
+        if(!document.getElementById(`desYMar${i}`).checked){
+            ingDesYMarBorrar.push(ingDeDesYMar[i])
+        };  
+    };
+    ingredientesDeDesayuno = [];
+    ingredientesDeMarchas =[];
+    for (i=0; i<ingDesYMarBorrar.length; i++){
+        if(ingDesYMarBorrar.plato === "Desayuno") {
+            ingredientesDeDesayuno.push(ingDesYMarBorrar[i]);
+        } else {
+            ingredientesDeMarchas.push(ingDesYMarBorrar[i]);
+        };
+    };
+    limpiarIngredientes();
+    console.log(ingDesYMarBorrar); 
+    console.log(ingredientesDeDesayuno);
+    console.log(ingredientesDeMarchas)   
+    imprimirListaIngredientesDeDesayunosYMarchas(ingredientesDeDesayuno);
+    imprimirListaIngredientesDeDesayunosYMarchas(ingredientesDeMarchas);
+};
 

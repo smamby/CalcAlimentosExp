@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="cal_alim.css">
     <title>calculo de provisiones para mantañismo</title>
 </head>
-<body>
-    <script src="cal_alim.js"></script>
+<body>    
     <header>
         <h1>Computo de alimentacion para expediciones de montaña</h1>
     </header>
@@ -86,6 +85,7 @@
                 <th id="tabla1">Cantidad porcion</th>
                 <th id="tabla1">Cantidad total</th>
                 <th id="tabla1">Comidas Computadas</th>
+                <th id="tabla1">Borrar</th>
             </tr>
         </thead>
         <tbody>
@@ -95,6 +95,11 @@
             
         </tfoot>
     </table>
+    <div class="delButton">
+        <input type="button" 
+            onclick="javascript:borrarIngredientesCena();" 
+            value="Borrar ingredientes seleccionados">
+    </div>
     <h1>
     <!-- DESAYUNOS -->
     </h1>
@@ -173,6 +178,7 @@
                 <th id="tabla1">Cantidad porcion</th>
                 <th id="tabla1">Cantidad total</th>
                 <th id="tabla1">Comidas Computadas</th>
+                <th id="tabla1">Borrar</th>
             </tr>
         </thead>
         <tbody>
@@ -182,6 +188,11 @@
             
         </tfoot>
     </table>
+    <div class="delButton">
+        <input type="button" 
+            onclick="javascript:borrarIngredientesDesYMar();" 
+            value="Borrar ingredientes seleccionados">
+    </div>
     <table class="table table-hover" id="listaCompras">
         <thead>
             <h4>Lista de compras</h4>
@@ -195,4 +206,8 @@
         </thead>
     </table>
 </body>
+<footer>
+    <script src="cal_alim.js"></script>
+    <script src="cal_alim_errores.js"></script>
+</footer>
 </html>

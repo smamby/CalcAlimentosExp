@@ -12,6 +12,17 @@ function cargaPreviaFalse(){
         document.getElementById('plato').focus();                
     };
 };
+// function superoCantComidas(){
+//     //comidasComputadas=comidasComputadasFunction(comidasP);
+//     if ((comidasComputadas<cenas/integ)
+//         &&(diasPlato<cenas/integ)){
+//         return true;
+//     }else{
+//         if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
+//             return true;
+//         }
+//     }
+// }
 
 function condCargarIngredientesPlato() {
     if (platoCargado===true && datosExpeCargados===true){
@@ -53,3 +64,4 @@ function segundaCondCargaIngMar(){
         alert("Completa los datos del ingrediente");
     };
 };
+

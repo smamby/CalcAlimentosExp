@@ -44,37 +44,57 @@
     <h1>
     <!-- COMIDAS --> 
     </h1>
-    <form id="cenas">
+    <div id="contComida">
         <label for="">Comidas</label>
         <p id="comidasYPorciones"></p> 
-        <div id="platos">            
-            <label>Plato</label>
-            <input type="text" name="plato" id="plato"><br/>
-            <label>Dias que repetis el plato</label>
-            <input type="number" id="cantidadCenas" 
-            placeholder="veces que repite plato">
-            <input type="button" value="cargar plato" 
-            onclick="javascript:cargarPlato();">
+        <div id="contFormComida">
+            <form id="cenas">            
+                <div id="platos">            
+                    <label>Plato</label>
+                    <input type="text" name="plato" id="plato"><br/>
+                    <label>Dias que repetis el plato</label>
+                    <input type="number" id="cantidadCenas" 
+                    placeholder="veces que repite plato">
+                    <input type="button" value="cargar plato" 
+                    onclick="javascript:cargarPlato();">
+                    <input type="button" value="limpiar"
+                    onclick="limpiarPlatoInput()">
+                </div>
+                <div id="ingPlatos">
+                    <label>Ingrediente</label>
+                    <input type="text" id="ingredientesCenas" 
+                    name="ingredientesCenas">
+                    <label>Unidades</label>
+                    <select name="" id="unidades">
+                        <option value="gs.">gs.</option>
+                        <option value="ud.">ud.</option>
+                        <option value="paq.">paq.</option>
+                    </select>
+                    <label for="">Cantidad</label>
+                    <input type="number" id="cantidadIngCenas" 
+                    placeholder="cantidad por porcion">
+                    <input type="button" onclick="javascript:saveIngredientes();" 
+                    value="sumar ingrediente">
+                    <input type="button" 
+                    onclick="javascript:limpiarIngredientes();" value="Limpiar">
+                </div>
+            </form>
+            <section id="SectionTabMenu">
+                <table class="tabMenu" id="tabMenu">
+                    <thead>
+                        <tr id="tabHead">
+                            <th id="col1">Plato</th>
+                            <th id="col2">dias</th>
+                            <th id="col3">porc.</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyMenu">
+
+                    </tbody>
+                </table>
+            </section>  
         </div>
-        <div>
-            <label>Ingrediente</label>
-            <input type="text" id="ingredientesCenas" 
-            name="ingredientesCenas">
-            <label>Unidades</label>
-            <select name="" id="unidades">
-                <option value="gs.">gs.</option>
-                <option value="ud.">ud.</option>
-                <option value="paq.">paq.</option>
-            </select>
-            <label for="">Cantidad</label>
-            <input type="number" id="cantidadIngCenas" 
-            placeholder="cantidad por porcion">
-            <input type="button" onclick="javascript:saveIngredientes();" 
-            value="sumar ingrediente">
-            <input type="button" 
-            onclick="javascript:limpiarIngredientes();" value="Limpiar">
-        </div>
-    </form>
+    </div>
     <table class="table table-hover" id="listaDeIngredientes">
         <thead>
             <h4>Lista de ingredientes para comidas</h4>

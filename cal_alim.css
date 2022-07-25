@@ -38,13 +38,39 @@ body {
   justify-content: center;
   align-items: center;
 }
-#cenas, #desayunos, #ComidaMarchas{
+#contComida, #desayunos, #ComidaMarchas{
   border: 1px solid var(--light-violet);
   padding: 10px;
   border-radius: 5px;
 }
+#contFormComida{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+#cenas {
+  display: flex;
+  width: 70%;  
+}
+#ingPlatos{
+
+}
+#SectionTabMenu {
+  margin-left: 5px;
+  display: block;
+  width: 30%;
+  border: 1px solid var(--light-violet);
+}
+#col1,#col2,#col3{
+  border-bottom: 1px solid var(--light-violet);  
+}
 p{
+  padding-bottom: 2px;
   color: var(--grey-violet);
+}
+#platos{
+  display: block;  
+  justify-content: space-between;
 }
 .contUniDesay, .contUniMarcha{
   display: flex;

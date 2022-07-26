@@ -96,7 +96,7 @@ function cargarPlato(){   //comidasComputadas tabla de hash
         // document.getElementById('marchas').focus();
     };
     //comidasComputadas=comidasComputadasFunction(comidasP)
-    imprimirMenu(platosCenas);  
+    imprimirMenu(tablaPlatosYDias)//platosCenas);  
 };
 
 function saveIngredientes(){
@@ -190,27 +190,29 @@ function imprimirMenu(lista){
     var diasPlato = parseInt(document.getElementById('cantidadCenas').value);
     var integrantes = document.getElementById('integrantes').value;
     //var tablaPlatosYDias=[];
-    if(true){//diasPlato!=NaN&&platoNombre!=""){
+    if (!isNaN(diasPlato)&&platoNombre!=""){
         var platosYDias = {
             plato : platoNombre,
-            dias : diasPlato,
+            diasRepet : diasPlato,
         };
-        tablaPlatosYDias.push(platosYDias);    
-        tBodyMenu.innerHTML = "";
-        for (i=0; i<menu.length; i++) {        
-            console.log("menu[i]",menu[i]);
-            console.log("menu",menu);
-            console.log("tablaPlatosYDias",tablaPlatosYDias);
-            var row = tBodyMenu.insertRow(i)
-            var platoMenuCell = row.insertCell(0);
-            var diasMenu = row.insertCell(1);
-            var porcionesMenu = row.insertCell(2);
-            platoMenuCell.innerHTML = tablaPlatosYDias[i].plato;
-            diasMenu.innerHTML = tablaPlatosYDias[i].dias;
-            porcionesMenu.innerHTML = tablaPlatosYDias[i].dias*integrantes;
-            tBodyMenu.appendChild(row);
-        }
+        tablaPlatosYDias.push(platosYDias);
+        console.log("tabladiasYPlatos-luego de borrar",tablaPlatosYDias); 
+    };
+    tBodyMenu.innerHTML = "";
+    for (i=0; i<menu.length; i++) {        
+        console.log("menu[i]",menu[i]);
+        console.log("menu",menu);
+        console.log("tablaPlatosYDias",tablaPlatosYDias);
+        var row = tBodyMenu.insertRow(i)
+        var platoMenuCell = row.insertCell(0);
+        var diasMenu = row.insertCell(1);
+        var porcionesMenu = row.insertCell(2);
+        platoMenuCell.innerHTML = tablaPlatosYDias[i].plato;
+        diasMenu.innerHTML = tablaPlatosYDias[i].diasRepet;
+        porcionesMenu.innerHTML = tablaPlatosYDias[i].diasRepet*integrantes;
+        tBodyMenu.appendChild(row);
     }
+    
 }
 
 function limpiarIngredientes(){
@@ -412,7 +414,7 @@ function borrarIngredientesCena(){
     console.log("menuLuegoBorrar",menuLuegoBorrar);
     limpiarPlatoInput();
     tablaPlatosYDias = [...menuLuegoBorrar];
-    imprimirMenu(menuLuegoBorrar);
+    imprimirMenu(tablaPlatosYDias);
 };
 
 function borrarIngredientesDesYMar(){

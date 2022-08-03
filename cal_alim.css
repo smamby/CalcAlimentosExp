@@ -14,7 +14,7 @@ body {
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-    min-width: 420px;
+    min-width: 588px;
     max-width: 588px;
     text-align: center;
 }
@@ -52,8 +52,25 @@ body {
   display: flex;
   width: 70%;  
 }
+#platos{
+  display: block;  
+  justify-content: space-between;
+}
 #ingPlatos{
-
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  flex-wrap: wrap;
+}
+#contUnidades,#contCantidad{
+  display: flex;
+  flex-direction: column-reverse;
+  width: 50%;
+  justify-content: start;
+  text-align: center;  
+}
+#cantidadIngCenas{
+  padding-left: 40px;
 }
 #SectionTabMenu {
   margin-left: 5px;
@@ -68,25 +85,41 @@ p{
   padding-bottom: 2px;
   color: var(--grey-violet);
 }
-#platos{
-  display: block;  
-  justify-content: space-between;
-}
+
 .contUniDesay, .contUniMarcha{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  align-items: stretch;
   padding: 0px 0px 10px 0px;
+}
+.contIngDesayuno{
+  display: flex;
+  justify-content: space-between;
+
+}
+#contIngDes, #contDiasRepDes{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+#contUniDesayuno, #contCantDesayuno {
+  display: flex;
+  width: 25%;
+  flex-direction: column-reverse;
+  justify-content: start;
+  align-items: center;
 }
 #repiteLabel{
   width: 150px;
-  margin: 5px 5px 5px 55px;
-  text-align: end;
+  margin: 5px 5px 5px 5px;
+  text-align: center;
 }
 #pLabel{
   width: 80px;
-  margin: 5px 5px 5px 55px;
-  text-align: end;
+  margin: 5px 5px 5px 5px;
+  text-align: center;
 }
 input[type="button"]{
   padding: 5px;
@@ -135,7 +168,11 @@ input[type = "text"] {
 input[type = "button"] {
   background-color: rgb(166, 161, 184);
 }
-#listaDeIngredientes, #listaDeIngredientesDesaYMarch{
+.gardarYcargar{
+  display: flex;
+  justify-content: center;
+}
+#listaDeIngredientes, #listaDeIngredientesDesayunos, #listaDeIngredientesMarchas{
   border: 1px solid var(--light-red);
   padding: 15px;
 }

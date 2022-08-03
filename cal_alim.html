@@ -16,7 +16,7 @@
         <div id="itinerarios">
             <div class="contDiasExp">
                 <label for="dias" 
-                class="diasExp">Dias de expedición</label>
+                class="diasExp"><b>Dias de expedición</b></label>
                 <div id="dias"></div>
                 <br/>
             </div>   
@@ -45,7 +45,7 @@
     <!-- COMIDAS --> 
     </h1>
     <div id="contComida">
-        <label for="">Comidas</label>
+        <label for=""><b>Comidas</b></label>
         <p id="comidasYPorciones"></p> 
         <div id="contFormComida">
             <form id="cenas">            
@@ -64,19 +64,35 @@
                     <label>Ingrediente</label>
                     <input type="text" id="ingredientesCenas" 
                     name="ingredientesCenas">
-                    <label>Unidades</label>
+                    <div id="contUnidades">
+                        <label>Unidades</label>
                     <select name="" id="unidades">
                         <option value="gs.">gs.</option>
                         <option value="ud.">ud.</option>
                         <option value="paq.">paq.</option>
                     </select>
-                    <label for="">Cantidad</label>
-                    <input type="number" id="cantidadIngCenas" 
-                    placeholder="cantidad por porcion">
-                    <input type="button" onclick="javascript:saveIngredientes();" 
-                    value="sumar ingrediente">
+                    </div>
+                    <div id="contCantidad">
+                        <label for="">Cantidad por porcion</label>
+                    <input type="number" id="cantidadIngCenas">
+                    </div>
+                    <div id="contClasificacionIng">
+                        <select name="" id="clasificacionIngCenas">
+                            <option value="Almacen">Almacen</option>
+                            <option value="Verduleria">Verduleria</option>
+                            <option value="Dietetica">Dietetica</option>
+                            <option value="Carniceria">Carniceria</option>
+                            <option value="Kiosko">Kiosko</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                    <div id="contBtnsIng">
+                        <input type="button" onclick="javascript:saveIngredientes();" 
+                    value="sumar ing.">
                     <input type="button" 
                     onclick="javascript:limpiarIngredientes();" value="Limpiar">
+                    </div>
+                    
                 </div>
             </form>
             <section id="SectionTabMenu">
@@ -97,7 +113,7 @@
     </div>
     <table class="table table-hover" id="listaDeIngredientes">
         <thead>
-            <h4>Lista de ingredientes para comidas</h4>
+            <h4><b>Lista de ingredientes para comidas</b></h4>
             <tr>
                 <th id="tabla1">Plato</th>
                 <th id="tabla1">Ingrediente</th>
@@ -120,33 +136,65 @@
             onclick="javascript:borrarIngredientesCena();" 
             value="Borrar ingredientes seleccionados">
     </div>
+    <div class="gardarYcargar">
+        <div class="guerdarButton">
+            <input type="button" onclick="guardarTodo()"
+             value="Guardar Trabajo">
+        </div>
+        <div class="cargarButton">
+            <input type="button" onclick="cargarTodo()"
+             value="Cargar Trabajo">
+        </div>
+    </div>
+    
     <h1>
     <!-- DESAYUNOS -->
     </h1>
     <form action="" id="desayunos">
         <div id="menuDesayuno">
-            <label for="">Desayuno</label>
+            <label for=""><b>Desayuno</b></label>
             <p id="labelDesayunos"> </p>            
         </div>
         <div id="ContIngredientesDesayuno">
-            <div class="contUniDesay">
-                <label>Ingrediente</label>
-                <input type="text" id="ingredientesDesayuno" 
-                name="ingredientesDesayuno">
-                <label id="repiteLabel">Dias que repetis este alimento</label>
-                <input type="number" id="repiteDesayuno" 
-                placeholder="veces que repite el alimento">
+            <div class="contIngDesayuno">
+                <div id="contIngDes">
+                    <label>Alimento</label>
+                    <input type="text" id="ingredientesDesayuno" 
+                    name="ingredientesDesayuno">
+                </div>
+                <div id="contDiasRepDes">
+                    <label id="repiteLabel">Dias que repetis este alimento</label>
+                    <input type="number" id="repiteDesayuno" 
+                    placeholder="veces que repite el alimento">
+                </div>
+                
             </div>
             <div class="contUniDesay">
-                <label>Unidades</label>
-                <select name="" id="unidadesDesayuno">
-                    <option value="gs.">gs.</option>
-                    <option value="ud.">ud.</option>
-                    <option value="paq.">paq.</option>
-                </select>            
-                <label for=""id="pLabel">Cantidad por porcion</label>
-                <input type="number" id="cantidadIngDesayuno" 
-                placeholder="cantidad por porcion">            
+                <div id="contUniDesayuno">
+                    <label>Unidades</label>
+                    <select name="" id="unidadesDesayuno">
+                        <option value="gs.">gs.</option>
+                        <option value="ud.">ud.</option>
+                        <option value="paq.">paq.</option>
+                    </select> 
+                </div>
+                <div id="contCantDesayuno">
+                    <label for=""id="pLabel">Cantidad por porcion</label>
+                    <input type="number" id="cantidadIngDesayuno" 
+                    placeholder="cantidad por porcion">
+                </div>
+                           
+                
+                <div id="contClasificacionIng">
+                    <select name="" id="clasificacionIngDes">
+                        <option value="Almacen">Almacen</option>
+                        <option value="Verduleria">Verduleria</option>
+                        <option value="Dietetica">Dietetica</option>
+                        <option value="Carniceria">Carniceria</option>
+                        <option value="Kiosko">Kiosko</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>          
                 <input type="button" onclick="javascript:saveIngredientesDesayuno();"
                 value="sumar ingrediente">
                 <input type="button" onclick="javascript:limpiarIngredientes();"
@@ -154,12 +202,46 @@
             </div>
         </div>
     </form>
+    <table class="table table-hover" id="listaDeIngredientesDesayunos">
+        <thead>
+            <h4><b>Lista de ingredientes para desayunos</b></h4>
+            <tr>
+                <th id="tabla1">Plato</th>
+                <th id="tabla1">Ingrediente</th>
+                <th id="tabla1">Unidades</th>
+                <th id="tabla1">Cantidad porcion</th>
+                <th id="tabla1">Cantidad total</th>                
+                <th id="tabla1">Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>
+    <div class="delButton">
+        <input type="button" 
+            onclick="javascript:borrarIngredientesDesayunos();" 
+            value="Borrar ingredientes seleccionados">
+    </div>
+    <div class="gardarYcargar">
+        <div class="guerdarButton">
+            <input type="button" onclick="guardarTodo()"
+             value="Guardar Trabajo">
+        </div>
+        <div class="cargarButton">
+            <input type="button" onclick="cargarTodo()"
+             value="Cargar Trabajo">
+        </div>
+    </div>
     <h1>
     <!-- MARCHAS -->   
     </h1>
     <form action="" id="ComidaMarchas">
         <div id="menuMarchas">
-            <label for="">Marchas</label>
+            <label for=""><b>Marchas</b></label>
             <p id="labelMarchas"></p>            
         </div>
         <div id="ContIngredientesMarchas">
@@ -181,6 +263,14 @@
                 <label for="cantidadIngMarchas" id="pLabel">Cantidad por porcion</label>
                 <input type="number" id="cantidadIngMarchas" 
                 placeholder="cantidad por porcion">
+                <select name="" id="clasificacionIngMarchas">
+                    <option value="Almacen">Almacen</option>
+                    <option value="Verduleria">Verduleria</option>
+                    <option value="Dietetica">Dietetica</option>
+                    <option value="Carniceria">Carniceria</option>
+                    <option value="Kiosko">Kiosko</option>
+                    <option value="Otros">Otros</option>
+                </select>
                 <input type="button" onclick="javascript:saveIngredientesMarchas();" 
                 value="sumar ingrediente">
                 <input type="button" onclick="javascript:limpiarIngredientes();" 
@@ -188,9 +278,9 @@
             </div>
         </div>
     </form>
-    <table class="table table-hover" id="listaDeIngredientesDesaYMarch">
+    <table class="table table-hover" id="listaDeIngredientesMarchas">
         <thead>
-            <h4>Lista de ingredientes para desayunos y marchas</h4>
+            <h4><b>Lista de ingredientes para marchas</b></h4>
             <tr>
                 <th id="tabla1">Plato</th>
                 <th id="tabla1">Ingrediente</th>
@@ -209,8 +299,18 @@
     </table>
     <div class="delButton">
         <input type="button" 
-            onclick="javascript:borrarIngredientesDesYMar();" 
+            onclick="javascript:borrarIngredientesMarchas();" 
             value="Borrar ingredientes seleccionados">
+    </div>
+    <div class="gardarYcargar">
+        <div class="guerdarButton">
+            <input type="button" onclick="guardarTodo()"
+             value="Guardar Trabajo">
+        </div>
+        <div class="cargarButton">
+            <input type="button" onclick="cargarTodo()"
+             value="Cargar Trabajo">
+        </div>
     </div>
     <table class="table table-hover" id="listaCompras">
         <thead>

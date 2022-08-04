@@ -43,6 +43,13 @@ body {
   padding: 10px;
   border-radius: 5px;
 }
+h1{
+  height: 24px;
+}
+#menuComidas, #menuDesayuno, #menuMarchas{
+  font-size: large;
+  height: 74px;
+}
 #contFormComida{
   display: flex;
   width: 100%;
@@ -97,29 +104,41 @@ p{
   justify-content: space-between;
 
 }
-#contIngDes, #contDiasRepDes{
+#contIngDes, #contDiasRepDes, #contIngMar, #conDiasRepMar{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   width: 50%;
 }
 #contUniDesayuno, #contCantDesayuno {
   display: flex;
   width: 25%;
-  flex-direction: column-reverse;
-  justify-content: start;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+#labelUnidades{
+  display: flex;  
+  align-items: center
+}
+#cantidadIngDesayuno,#cantidadIngMarchas{
+  height: auto;
 }
 #repiteLabel{
   width: 150px;
   margin: 5px 5px 5px 5px;
-  text-align: center;
+  text-align: end;
 }
 #pLabel{
   width: 80px;
   margin: 5px 5px 5px 5px;
   text-align: center;
+}
+#contClasificacionIng{
+  display: flex;
+  justify-content: center;
+  align-content: stretch;
 }
 input[type="button"]{
   padding: 5px;

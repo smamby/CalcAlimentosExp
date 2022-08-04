@@ -12,6 +12,7 @@
     <header>
         <h1>Computo de alimentacion para expediciones de montaña</h1>
     </header>
+    <h1></h1>
     <form action="" id="datosInicio">
         <div id="itinerarios">
             <div class="contDiasExp">
@@ -45,8 +46,10 @@
     <!-- COMIDAS --> 
     </h1>
     <div id="contComida">
-        <label for=""><b>Comidas</b></label>
-        <p id="comidasYPorciones"></p> 
+        <div id="menuComidas">
+            <label for=""><b>Comidas</b></label>
+            <p id="comidasYPorciones"></p>
+        </div>         
         <div id="contFormComida">
             <form id="cenas">            
                 <div id="platos">            
@@ -171,7 +174,9 @@
             </div>
             <div class="contUniDesay">
                 <div id="contUniDesayuno">
-                    <label>Unidades</label>
+                    <div id="labelUnidades">
+                        <label id="labelUnid" >Unidades</label>
+                    </div> 
                     <select name="" id="unidadesDesayuno">
                         <option value="gs.">gs.</option>
                         <option value="ud.">ud.</option>
@@ -246,15 +251,21 @@
         </div>
         <div id="ContIngredientesMarchas">
             <div class="contUniMarcha">
-                <label>Ingrediente</label>
-                <input type="text" id="ingredientesMarchas" 
-                name="ingredientesMarchas">
-                <label id="repiteLabel">Veces que repetis el alimento</label>
+                <div id="contIngMar">
+                    <label>Alimento</label>
+                    <input type="text" id="ingredientesMarchas" 
+                    name="ingredientesMarchas">
+                </div>
+                <div id="conDiasRepMar">
+                    <label id="repiteLabel">Veces que repetis el alimento</label>
                     <input type="number" id="repiteMarcha" 
-                    placeholder="veces que repite el alimento">        
+                    placeholder="veces que repite el alimento">
+                </div>        
             </div>
             <div class="contUniMarcha">
-                <label>Unidades</label>
+                <div id="labelUnidades">
+                    <label id="labelCant" >Unidades</label>
+                </div>                
                 <select name="" id="unidadesMarchas">
                     <option value="gs.">gs.</option>
                     <option value="ud.">ud.</option>

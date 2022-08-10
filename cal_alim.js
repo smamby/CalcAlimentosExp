@@ -1,31 +1,37 @@
+var lugar = "";
+var fecha = "";
 var diasDescanso = 0;
 var diasMarcha = 0;  
 var integrantes=1;
 var datosExpeCargados=false;
 function preArranque() {
-    document.getElementById('marchas').focus();
+    document.getElementById("lugarInput").focus();
 }
 preArranque();
 
-function arranque(){    
+function arranque(){   
+    lugar = document.getElementById("lugarInput").value;
+    fecha = document.getElementById("fechaInput").value;
     diasMarcha = document.getElementById('marchas').value;
     diasDescanso = document.getElementById('descanso').value;
     integrantes = document.getElementById('integrantes').value;
-        
+    console.log(lugar);
+    console.log(fecha);
+
     let m = parseInt(diasMarcha);
     let des = parseInt(diasDescanso);
     var integ = parseInt(integrantes);
     //var cenasTotales = (dias + diasDescanso) * integrantes;
     var dias = m+des;
-    diasDeDesayuno=dias;
+    diasDeDesayuno=dias-1;
     diasDeMarcha=m
-    var cenasTotales = (m + (des*2)) * integ;
+    var cenasTotales = (m - 1 + (des*2)) * integ;
     cenas = cenasTotales
     console.log(dias);
     //console.log(diasDescanso);
     //console.log(integrantes);
     console.log(cenasTotales); 
-    if (cenasTotales > 0){   
+    if (diasDeMarcha > 0){   
         datosExpeCargados=true;
         var impDias = document.getElementById("dias");
         impDias.innerHTML = ':  '+dias;
@@ -231,9 +237,11 @@ function limpiarIngredientes(){
     document.getElementById('cantidadIngMarchas').value = "";
 }
 function limpiarPlatoInput(){
-    document.getElementById('plato').value = "";
-    document.getElementById('cantidadCenas').value = "";
-}
+    if(confirm("No limpies si no completaste el plato. Completá todos los ingredientes del plato y luego limpiá para ingresar un nuevo plato. CANCELA PARA NO LIMPIAR.")){
+        document.getElementById('plato').value = "";
+        document.getElementById('cantidadCenas').value = "";
+    };    
+};
 
 /// DESAYUNOS
 
@@ -527,6 +535,8 @@ function borrarIngredientesCena(){
 
 
 //compilar listas
+console.log('lugar',lugar);
+console.log('fecha',fecha);
 console.log('cenas',ingredientesDeCenas);
 console.log('des',ingredientesDeDesayuno);
 console.log('march',ingredientesDeMarchas);
@@ -542,8 +552,10 @@ var cargarListaMarchas = [];
 var guardarDataExpe = [];
 var cargarListaMenu = [];
 
-function guardarDatosExpe(dM,dD,int){
+function guardarDatosExpe(lg,dt,dM,dD,int){
     guardarDataExpe.splice(0,guardarDataExpe.length);
+    guardarDataExpe.push(lg)
+    guardarDataExpe.push(dt)
     guardarDataExpe.push(dM)
     guardarDataExpe.push(dD)
     guardarDataExpe.push(int);
@@ -551,7 +563,7 @@ function guardarDatosExpe(dM,dD,int){
 }
 //guardarDatosExpe(diasMarcha,diasDescanso,integrantes);
 function guardarTodo(){
-    guardarDatosExpe(diasMarcha,diasDescanso,integrantes);
+    guardarDatosExpe(lugar,fecha,diasMarcha,diasDescanso,integrantes);
     guardar(guardarDataExpe, "dataExpe");
     guardar(ingredientesDeCenas,"cenas");    
     guardar(ingredientesDeDesayuno,"desayunos");
@@ -585,9 +597,11 @@ function cargarMarchas(){
 function cargarDataExpe(){
     guardarDataExpe = JSON.parse(localStorage.getItem("dataExpe"));
     console.log(guardarDataExpe);
-    document.getElementById('marchas').value = guardarDataExpe[0];
-    document.getElementById('descanso').value = guardarDataExpe[1];
-    document.getElementById('integrantes').value = guardarDataExpe[2];
+    document.getElementById('lugarInput').value = guardarDataExpe[0]
+    document.getElementById('fechaInput').value = guardarDataExpe[1]
+    document.getElementById('marchas').value = guardarDataExpe[2];
+    document.getElementById('descanso').value = guardarDataExpe[3];
+    document.getElementById('integrantes').value = guardarDataExpe[4];
     arranque();
 }
 function cargarTodo(){

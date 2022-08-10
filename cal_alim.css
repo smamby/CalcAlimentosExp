@@ -147,7 +147,12 @@ input[type="button"]{
   border-radius: 3px;
 }
 input[type="button"]:hover {
-  background-color: aquamarine;
+  background-color: var(--light-blue);
+  border: 1px solid var(--medium-violet);
+}
+input[type="button"]:active {
+  background-color: var(--light-red);
+  border: 1px solid var(--medium-violet);
 }
 select{
   padding: 3px 3px;  

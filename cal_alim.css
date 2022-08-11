@@ -1,4 +1,5 @@
 :root{
+  --ultra-dark-violet:rgb(24, 18, 29);
   --dark-violet: rgb(35, 24, 44);
   --light-violet: rgb(164, 149, 216);
   --grey-violet: rgb(134, 131, 145);
@@ -217,7 +218,37 @@ tr >th {
 tr th ~ th {
   width: 100px;
 }
-#listaCompras{
-  border: 3px dashed var(--dark-red);
-  padding: 15px;
+#contListasCompra{
+  background-color: var(--ultra-dark-violet);
+  /* border: 3px dashed var(--dark-red); */
+  padding: 10px;
+}
+#contListasCompra table thead div{
+  font-weight: 800;
+  font-size: large;
+  padding: 10px;
+  width: 100%;
+}
+#contListasCompra table{
+  border: 1px solid var(--light-red);
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+#contListasCompra table thead,
+#contListasCompra table tbody {
+  width: 100%;
+  justify-items: center;
+}
+#contListasCompra table thead tr,
+#contListasCompra table tbody tr{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#contListasCompra table thead td,
+#contListasCompra table tbody td {
+  justify-content: space-between;
+  padding: 10px;
+  width: 25%;
 }

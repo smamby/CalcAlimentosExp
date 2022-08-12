@@ -252,3 +252,40 @@ tr th ~ th {
   padding: 10px;
   width: 25%;
 }
+a{
+  background-color: var(--ultra-dark-violet);
+  color: var(--grey-violet);
+  border: 2px solid var(--grey-violet);
+  border-radius: 5px;
+  padding: 5px;
+  text-decoration: none;  
+}
+#imp{
+  margin-bottom: 16px;
+}
+
+
+@media print{
+  body *:not(#contListasCompra):not(#contListasCompra *){
+    visibility: hidden;
+    background-color: white;
+  }
+  body{
+    background-color: white;
+  }
+  #contListasCompra{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    /* visibility: visible; */
+    background-color: white;
+    color: black;    
+    display: block !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+  }
+  #contListasCompra table thead div{
+    display: none;
+  }
+}

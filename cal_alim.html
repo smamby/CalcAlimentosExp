@@ -332,13 +332,16 @@
     </div>
     <h1></h1>
     <h2>Lista de compras</h2>
-    <input type="button" value="Lista de compras" onclick="listasDeCompras()">
+    <div id="imp">
+        <input type="button" value="Lista de compras" onclick="listasDeCompras()">
+        <a href="javascript:imprSelec('contListasCompra')">imprimir</a>
+        <input type="button" value="imp" onclick="imprimirListasDeCompras()">    
+    </div>    
     <div id="contListasCompra">
         
-    </div>
-    
+    </div>    
 </body>
-<footer>
+<footer>    
     <script src="cal_alim.js"></script>
     <script src="cal_alim_errores.js"></script>
     <script src="compilarLista.js"></script>

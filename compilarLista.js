@@ -152,7 +152,15 @@ function listasDeCompras(){
     alistarParaImprimir();
     CrearListas(clases)
 }
-
+var imp = document.getElementById("#contListasCompra tbody");
 function imprimirListasDeCompras(){
-    windows.print()
+    window.print(imp)
+}
+function imprSelec(nombre){
+    var ficha = document.getElementById(nombre);
+    var win = window.open(' ', 'popimpr');
+    win.document.write(ficha.innerHTML);
+    win.document.close();
+    win.print();
+    win.close();
 }

@@ -30,7 +30,7 @@ function encontrarClases(lista) {
     });
 };
 
-concatenar()
+//concatenar()
 function separate(lista) {
     encontrarClases(lista)
     for (var categoria of clases){
@@ -83,6 +83,21 @@ function minimizarLista(lista){
     };
 };
 function sumarIngredientes(){
+    listaConcatenada = [];
+    Almacen = [];
+    Verduleria = [];
+    Dietetica = [];
+    Carniceria = [];
+    Kiosco = [];
+    Otros = [];
+    clases = [];
+    items = [];
+    listaFinal = [];
+    ingredienteFinal = [];
+    listaFinalMinima = [];
+    var contListasCompra = document.getElementById("listasCompra");
+    contListasCompra.innerHTML= "";
+
     concatenar()
     encontrarItems(listaConcatenada)
     sumarItemsIguales(listaConcatenada)
@@ -113,7 +128,7 @@ function CrearListas(clases){
         var rowCompra = document.createElement("tr");
         rowCompra.className=`rowCompra${clase}`;
         rowCompra.id=`rowCompra${clase}`;
-        var contListasCompra = document.getElementById("contListasCompra");
+        var contListasCompra = document.getElementById("listasCompra");
         contListasCompra.append(table);
         var titleTable = document.createElement("div")
         thead.appendChild(titleTable);
@@ -148,19 +163,28 @@ function CrearListas(clases){
     }       
 }
 
+function titleLista(){    
+    var titulo = document.getElementById("titleE");
+    titulo.innerHTML ="";    
+    titulo.append(`${lugar} - ${fecha}`);    
+}
+
 function listasDeCompras(){
-    alistarParaImprimir();
+    alistarParaImprimir();    
+    titleLista();
+
     CrearListas(clases)
 }
-var imp = document.getElementById("#contListasCompra tbody");
+//var imp = document.getElementById("#contListasCompra tbody");
 function imprimirListasDeCompras(){
-    window.print(imp)
+    //listasDeCompras()
+    window.print()
 }
-function imprSelec(nombre){
-    var ficha = document.getElementById(nombre);
-    var win = window.open(' ', 'popimpr');
-    win.document.write(ficha.innerHTML);
-    win.document.close();
-    win.print();
-    win.close();
-}
+// function imprSelec(nombre){
+//     var ficha = document.getElementById(nombre);
+//     var win = window.open(' ', 'popimpr');
+//     win.document.write(ficha.innerHTML);
+//     win.document.close();
+//     win.print();
+//     win.close();
+// }

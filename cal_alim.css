@@ -252,28 +252,52 @@ tr th ~ th {
   padding: 10px;
   width: 25%;
 }
-a{
+a, #imprim{
   background-color: var(--ultra-dark-violet);
   color: var(--grey-violet);
   border: 2px solid var(--grey-violet);
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px;
   text-decoration: none;  
+  width: 120px;
 }
 #imp{
   margin-bottom: 16px;
+  background-color: var(--ultra-dark-violet);
+  border-radius: 5px;
+  padding: 5px;
 }
-
+#titleExp{
+  margin-bottom: 16px;
+  background-color: var(--ultra-dark-violet);
+  border-radius: 5px;
+  padding: 5px;
+}
+#titleExp p{
+  color: var(--light-blue);
+  font-size: larger;
+  font-weight: 700;
+}
 
 @media print{
   body *:not(#contListasCompra):not(#contListasCompra *){
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
     background-color: white;
   }
   body{
     background-color: white;
   }
+  #titleExp {
+    background-color: white;
+    color: black;
+  }
+  #titleExp p{
+    background-color: white;
+    color: black;
+  }
   #contListasCompra{
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -284,8 +308,19 @@ a{
     display: block !important;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
+    line-height: 0.9em;
   }
-  #contListasCompra table thead div{
+  #contListasCompra table thead tr{
     display: none;
+  }
+  #contListasCompra table tbody tr{
+    height: 24px;
+    text-align: left;
+  }
+  #contListasCompra table tbody td:nth-child(1){
+    display: none;
+  }
+  #contListasCompra table tbody td:nth-child(2){
+    width: 200px;
   }
 }

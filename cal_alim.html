@@ -333,11 +333,18 @@
     <h1></h1>
     <h2>Lista de compras</h2>
     <div id="imp">
-        <input type="button" value="Lista de compras" onclick="listasDeCompras()">
-        <a href="javascript:imprSelec('contListasCompra')">imprimir</a>
-        <input type="button" value="imp" onclick="imprimirListasDeCompras()">    
-    </div>    
+        <!-- <input type="button" value="Lista de compras" onclick="listasDeCompras()"> -->
+        <!-- <a href="javascript:imprSelec('contListasCompra')">imprimir</a> -->
+        <input type="button" id="imprim" value="Imprimir" onclick="imprimirListasDeCompras()">    
+    </div>   
+    
     <div id="contListasCompra">
+        <div id="titleExp">
+            <p id="titleE"></p>
+        </div> 
+        <div id="listasCompra">
+
+        </div>
         
     </div>    
 </body>

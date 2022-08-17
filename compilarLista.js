@@ -173,7 +173,7 @@ function CrearListas(clases){
 function titleLista(){    
     var titulo = document.getElementById("titleE");
     titulo.innerHTML ="";    
-    titulo.append(`${lugar} - ${fecha}`);    
+    titulo.append(`${lugar} - ${fecha} - ${integrantes} Integrantes`);    
 }
 function listasDeCompras(){
     listasDeComprasImpresion()

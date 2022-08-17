@@ -24,7 +24,7 @@ function arranque(){
     var integ = parseInt(integrantes);
     //var cenasTotales = (dias + diasDescanso) * integrantes;
     var dias = m+des;
-    diasDeDesayuno=dias-1;
+    diasDeDesayuno=dias-1+des;
     diasDeMarcha=m
     var cenasTotales = (m - 1 + (des*2)) * integ;
     cenas = cenasTotales
@@ -44,7 +44,7 @@ function arranque(){
             +" dias y "+diasDeMarcha*integ+" porciones";
         var impDesayunos = document.getElementById("labelDesayunos");
         impDesayunos.innerHTML = diasDeDesayuno
-            +" dias y "+diasDeDesayuno*integ+" porciones";
+            +" dias y "+diasDeDesayuno*integ+" porciones ("+(diasDeDesayuno-1)+" desayunos, "+des+" meriendas)";
     } else {
         condPlatoCargado();
         // alert("Carga los dias de expedicion");
@@ -634,6 +634,7 @@ function cargarTodo(){
     cargarDesayuno();
     cargarMarchas();    
     cargarMenu();
+    listasDeCompras();
 }
 
 ///FALTA CARGAR DATOS EXPEDICION

@@ -5,9 +5,15 @@ console.log('des',ingredientesDeDesayuno);
 console.log('march',ingredientesDeMarchas);
 
 var listaConcatenada = [];
-function concatenar(){
-     listaConcatenada = ingredientesDeCenas.concat(ingredientesDeDesayuno.concat(ingredientesDeMarchas));
+function subtotales(lista){
+    for (var elemento of lista) {
+        elemento.subtotal = elemento.diasRepet * elemento.cantidad * integ;
+    }
 }
+function concatenar(){
+    listaConcatenada = ingredientesDeCenas.concat(ingredientesDeDesayuno.concat(ingredientesDeMarchas));
+    subtotales(listaConcatenada);
+};
 
 var Almacen = [];
 var Verduleria = [];
@@ -101,7 +107,7 @@ function sumarIngredientes(){
     concatenar()
     encontrarItems(listaConcatenada)
     sumarItemsIguales(listaConcatenada)
-    console.log(listaFinal)
+    console.log("listaFinal",listaFinal)
     minimizarLista(listaFinal);
 };
 function alistarParaImprimir(){
@@ -110,6 +116,7 @@ function alistarParaImprimir(){
     console.table(Almacen);
     console.table(Verduleria);
     console.table(Dietetica);
+    console.table(Carniceria);
     console.table(Kiosco);
     console.table(Otros);
 };
@@ -168,8 +175,11 @@ function titleLista(){
     titulo.innerHTML ="";    
     titulo.append(`${lugar} - ${fecha}`);    
 }
-
 function listasDeCompras(){
+    listasDeComprasImpresion()
+}
+function listasDeComprasImpresion(){
+    limpiarIngredientes()
     alistarParaImprimir();    
     titleLista();
 

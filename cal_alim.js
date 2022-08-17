@@ -133,10 +133,15 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad,iclasifIngCenas){
         unidad : iunidad,
         diasRepet: diasPlato,
         cantidad : icantidad,
-        subtotal : icantidad * integ * diasPlato,
+        subtotal : 0, //icantidad * integ * diasPlato,
         comidasComp : (comidasComputadas)+" de "+cenas/integ,
+        
         //checkDel : false,
     };
+    console.log("nuevoIngredienteCantidad",nuevoIngrediente.cantidad);
+    console.log("nuevoIngredienteSubtotal",nuevoIngrediente.subtotal);
+    console.log("nuevoIngredienteInteg",integ);
+    console.log("nuevoIngredienteDiasPlato",diasPlato);
     // if (comidasComputadas>(cenas/integ)){
     //     if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
     //         ingredientesDeCenas.push(nuevoIngrediente);
@@ -146,6 +151,13 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad,iclasifIngCenas){
     //     };
     // } else {
     ingredientesDeCenas.push(nuevoIngrediente);
+    console.log("nuevoIngrediente",nuevoIngrediente);
+    nuevoIngrediente = {};
+    console.log("nuevoIngredienteCantidad",nuevoIngrediente.cantidad);
+    console.log("nuevoIngredienteSubtotal",nuevoIngrediente.subtotal);
+    
+    limpiarIngredientes();
+    console.log("nuevoIngrediente",nuevoIngrediente);
     // }
     //ingredientesDeCenas.push(nuevoIngrediente); // arreglar error de logica
     imprimirListaIngredientes(ingredientesDeCenas);
@@ -175,16 +187,16 @@ function imprimirListaIngredientes(lista){
         var ingredienteCell = row.insertCell(1);
         var unidadesCell = row.insertCell(2);
         var cantidadCell = row.insertCell(3);
-        var subtotalCell = row.insertCell(4);
-        var ComidasCompCell = row.insertCell(5);
-        var checkboxForDelete = row.insertCell(6);
+        //var subtotalCell = row.insertCell(4);
+        var ComidasCompCell = row.insertCell(4);
+        var checkboxForDelete = row.insertCell(5);
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
         ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
         unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
         //console.log(unidadesCell.innerHTML)
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
-        subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
+        //subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
         ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
         checkboxForDelete.appendChild(checkBox);
 
@@ -241,6 +253,7 @@ function limpiarPlatoInput(){
     if(confirm("No limpies si no completaste el plato. Completá todos los ingredientes del plato y luego limpiá para ingresar un nuevo plato. CANCELA PARA NO LIMPIAR.")){
         document.getElementById('plato').value = "";
         document.getElementById('cantidadCenas').value = "";
+        document.getElementById('plato').focus();
     };    
 };
 
@@ -276,7 +289,7 @@ function cargarIngDeDesayunos(dplato,dingrediente,dunidad,dcantidad,dclasifIngCe
         unidad : dunidad,
         diasRepet: vecesRepiteDesayuno,
         cantidad : dcantidad,
-        subtotal : dcantidad * integ * vecesRepiteDesayuno,
+        subtotal : 0, //dcantidad * integ * vecesRepiteDesayuno,
         comidasComp : 'NO DATA',//(acumuladoDesayuno)+" de "+diasDeDesayuno,
         //checkDel : false,
     };    
@@ -312,9 +325,9 @@ function imprimirListaIngredientesDeDesayunos(lista){
         var ingredienteCell = row.insertCell(1);
         var unidadesCell = row.insertCell(2);
         var cantidadCell = row.insertCell(3);
-        var subtotalCell = row.insertCell(4);
+        //var subtotalCell = row.insertCell(4);
         //var ComidasCompCell = row.insertCell(5);
-        var checkboxForDelete = row.insertCell(5)
+        var checkboxForDelete = row.insertCell(4)
         
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
@@ -322,7 +335,7 @@ function imprimirListaIngredientesDeDesayunos(lista){
         unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
         //console.log(unidadesCell.innerHTML)
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
-        subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
+        //subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
         //ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
         checkboxForDelete.append(checkBox);
         //checkboxForDelete.append(`<input type="checkbox" id="cena+${i}" name="cena+${i}">`);
@@ -395,7 +408,7 @@ function cargarIngDeMarchas(dplato,dingrediente,dunidad,dcantidad,dclasifIngCena
         diasRepet: vecesRepiteMarchas,
         unidad : dunidad,
         cantidad : dcantidad,
-        subtotal : dcantidad * integ * vecesRepiteMarchas,
+        subtotal : 0,//dcantidad * integ * vecesRepiteMarchas,
         comidasComp : 'NO DATA',
         //comidasComp : 'NO DATA', //(acumuladoMarchas)+" de "+diasDeMarcha,
         //checkDel : false,
@@ -413,6 +426,7 @@ function cargarIngDeMarchas(dplato,dingrediente,dunidad,dcantidad,dclasifIngCena
     console.log("ingredientesDeMarchas",ingredientesDeMarchas); 
     //console.log(typeof(ingredientesDeMarchas[0].unidad)) 
     document.getElementById('ingredientesMarchas').value = ""; 
+    document.getElementById('ingredientesMarchas').focus(); 
     //document.getElementById('unidades').value = "";
     //document.getElementById('cantidadIngCenas').value = ""; 
 };
@@ -436,9 +450,9 @@ function imprimirListaIngredientesDeMarchas(lista){
         var ingredienteCell = row.insertCell(1);
         var unidadesCell = row.insertCell(2);
         var cantidadCell = row.insertCell(3);
-        var subtotalCell = row.insertCell(4);
+        //var subtotalCell = row.insertCell(4);
         //var ComidasCompCell = row.insertCell(5);
-        var checkboxForDelete = row.insertCell(5)
+        var checkboxForDelete = row.insertCell(4)
         
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
@@ -446,7 +460,7 @@ function imprimirListaIngredientesDeMarchas(lista){
         unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
         //console.log(unidadesCell.innerHTML)
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
-        subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
+        //subtotalCell.innerHTML = listaDeIngredientes[i].subtotal;
         //ComidasCompCell.innerHTML = listaDeIngredientes[i].comidasComp;
         checkboxForDelete.append(checkBox);
         //checkboxForDelete.append(`<input type="checkbox" id="cena+${i}" name="cena+${i}">`);

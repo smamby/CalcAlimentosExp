@@ -3,6 +3,7 @@ var fecha = "";
 var diasDescanso = 0;
 var diasMarcha = 0;  
 var integrantes=1;
+var integ = parseInt(integrantes);
 var datosExpeCargados=false;
 function preArranque() {
     document.getElementById("lugarInput").focus();
@@ -14,7 +15,7 @@ function arranque(){
     fecha = document.getElementById("fechaInput").value;
     diasMarcha = document.getElementById('marchas').value;
     diasDescanso = document.getElementById('descanso').value;
-    integrantes = document.getElementById('integrantes').value;
+    integrantes = parseInt(document.getElementById('integrantes').value);
     console.log(lugar);
     console.log(fecha);
 

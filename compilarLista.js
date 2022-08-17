@@ -7,7 +7,7 @@ console.log('march',ingredientesDeMarchas);
 var listaConcatenada = [];
 function subtotales(lista){
     for (var elemento of lista) {
-        elemento.subtotal = elemento.diasRepet * elemento.cantidad * integ;
+        elemento.subtotal = elemento.diasRepet * elemento.cantidad * integrantes;
     }
 }
 function concatenar(){

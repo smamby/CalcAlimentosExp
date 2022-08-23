@@ -306,7 +306,8 @@ function borrarIngredientesCena(){
     };
     comidasComputadas = comCompParcial;
     platosCenas = menuLuegoBorrar.map(el => el.plato);
-    limpiarIngredientes();    
+    limpiarIngredientes();
+    limpiarPlatoInputsinPreguntar();  
     ingredientesDeCenas = [...ingCenaBorrar];
     imprimirListaIngredientes(ingredientesDeCenas);
     console.log("menuLuegoBorrar",menuLuegoBorrar);

@@ -1,3 +1,5 @@
+
+
 function condPlatoCargado(){
     alert("Carga los dias de expedicion");
     document.getElementById('marchas').focus();
@@ -12,17 +14,38 @@ function cargaPreviaFalse(){
         document.getElementById('plato').focus();                
     };
 };
-// function superoCantComidas(){
-//     //comidasComputadas=comidasComputadasFunction(comidasP);
-//     if ((comidasComputadas<cenas/integ)
-//         &&(diasPlato<cenas/integ)){
-//         return true;
-//     }else{
-//         if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
-//             return true;
-//         }
-//     }
-// }
+function reloadNobraYdiasPlato(){
+    platoNombre = document.getElementById('plato').value;
+    diasPlato = parseInt(document.getElementById('cantidadCenas').value);
+}
+function existePlato(){
+    if(platosCenas.includes(platoNombre)){
+        if (confirm("Este plato ya existe. <ACEPTAR> para agregar mas dias de este menu. <CANCEL> para solo agragar mas ingredientes") === true) {
+            pushPlato()
+            recalcularIngredientes();
+            
+        } else {
+            platoCargado=true;
+            buscarYborrarPlatoMenu();
+        };
+    }else{
+        platoCargado=true;
+        pushPlato();
+    }
+    platoCargado=true;
+};
+
+function buscarYborrarPlatoMenu(){    
+    console.log("plato ya existe ANTES", nuevaTabla);
+    console.log("plato ya existe ANTES", tablaPlatosYDias); 
+    // var buscar = nuevaTabla.map(el=> el.plato == platoNombre && el.diasRepet == diasPlato)
+    // var indiceBuscado = buscar.findIndex(el => el ==true);
+    // nuevaTabla.splice(indiceBuscado,1);
+    // console.log("plato ya existe", nuevaTabla);     
+    tablaPlatosYDias = [...nuevaTabla];
+    cargaIngrediente=true;
+    comidasComputadas = comidasComputadas //- diasPlato;
+}
 
 function condCargarIngredientesPlato() {
     if (platoCargado===true && datosExpeCargados===true){

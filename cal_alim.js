@@ -63,35 +63,28 @@ var diasDeMarcha=0;
 var cargaIngrediente=true;
 var platoCargado=false;
 var comidasP =[];
-
+var platoNombre="";
+var diasPlato=0;
+var nuevaTabla=[];
 
 function cargarPlato(){   //comidasComputadas tabla de hash
     if (datosExpeCargados===true) {
+        reloadNobraYdiasPlato();        
+        nuevaTabla = [...tablaPlatosYDias];
         if(!cargaIngrediente){
-            alert('No cargaste ingredientes para el plato anterior')
+            alert('No cargaste ingredientes para el plato anterior'); 
+            tablaPlatosYDias.pop();
         } else {
             if(document.getElementById('plato').value!="" 
             && document.getElementById('cantidadCenas').value!=0){        
                 cargaIngrediente=false;
-                var platoNombre = document.getElementById('plato').value;
-                var diasPlato = parseInt(document.getElementById('cantidadCenas').value);
+                //platoNombre = document.getElementById('plato').value;
+                //diasPlato = parseInt(document.getElementById('cantidadCenas').value);
                 var integrantes = document.getElementById('integrantes').value;
                 var integ = parseInt(integrantes);
-                // if((comidasComputadas<cenas/integ)
-                // &&(diasPlato<cenas/integ)){
-                    platosCenas.push(platoNombre);   
-                    var conteoPlatoP={};             
-                    conteoPlatoP={plato:platoNombre,diasRepet:diasPlato,};
-                    comidasP.push(conteoPlatoP); 
-                    console.log("comidasP",comidasP);
-                    //var cantidadPlato = diasPlato * integ;    
-                    console.log("platosNombre",platoNombre);
-                    console.log("platosCenas",platosCenas);
-                    comidasComputadas += diasPlato;                
-                    //comidasComputadas=comidasComputadasFunction(comidasP);
-                    console.log("var comidaComputadas",comidasComputadas);
-                    platoCargado=true;
-                //};  
+                
+                existePlato();                    
+                  
             } else {
                 alert("carga algun plato")
                 document.getElementById('plato').focus();
@@ -103,8 +96,23 @@ function cargarPlato(){   //comidasComputadas tabla de hash
         // document.getElementById('marchas').focus();
     };
     //comidasComputadas=comidasComputadasFunction(comidasP)
-    imprimirMenu(tablaPlatosYDias)//platosCenas);  
+    //platosCenas);  
 };
+function pushPlato(){
+    platosCenas.push(platoNombre);   
+    var conteoPlatoP={};             
+    conteoPlatoP={plato:platoNombre,diasRepet:diasPlato,};
+    comidasP.push(conteoPlatoP); 
+    console.log("comidasP",comidasP);
+    //var cantidadPlato = diasPlato * integ;    
+    console.log("platosNombre",platoNombre);
+    console.log("platosCenas",platosCenas);
+    comidasComputadas += diasPlato;                
+    //comidasComputadas=comidasComputadasFunction(comidasP);
+    console.log("var comidaComputadas",comidasComputadas);
+    platoCargado=true;
+    imprimirMenu(tablaPlatosYDias)
+}
 
 function saveIngredientes(){
     if(condCargarIngredientesPlato()){
@@ -136,21 +144,13 @@ function cargarIngDeCena(iplato,iingrediente,iunidad,icantidad,iclasifIngCenas){
         cantidad : icantidad,
         subtotal : 0, //icantidad * integ * diasPlato,
         comidasComp : (comidasComputadas)+" de "+cenas/integ,
-        
         //checkDel : false,
     };
     console.log("nuevoIngredienteCantidad",nuevoIngrediente.cantidad);
     console.log("nuevoIngredienteSubtotal",nuevoIngrediente.subtotal);
     console.log("nuevoIngredienteInteg",integ);
     console.log("nuevoIngredienteDiasPlato",diasPlato);
-    // if (comidasComputadas>(cenas/integ)){
-    //     if(confirm('Supero las comidas necearias, quiere sumarla igualmente')){
-    //         ingredientesDeCenas.push(nuevoIngrediente);
-    //     }else{
-    //         platosCenas.pop();
-    //         comidasComputadas -= diasPlato;
-    //     };
-    // } else {
+   
     ingredientesDeCenas.push(nuevoIngrediente);
     console.log("nuevoIngrediente",nuevoIngrediente);
     nuevoIngrediente = {};
@@ -217,7 +217,7 @@ function imprimirMenu(lista){
         var platosYDias = {
             plato : platoNombre,
             diasRepet : diasPlato,
-        };
+            };
         tablaPlatosYDias.push(platosYDias);
         console.log("tabladiasYPlatos-luego de borrar",tablaPlatosYDias); 
     };
@@ -256,6 +256,65 @@ function limpiarPlatoInput(){
         document.getElementById('cantidadCenas').value = "";
         document.getElementById('plato').focus();
     };    
+};
+function limpiarPlatoInputsinPreguntar(){
+    document.getElementById('plato').value = "";
+    document.getElementById('cantidadCenas').value = "";
+    //document.getElementById('plato').focus();
+};
+
+//  BORRADO cenas
+var menuLuegoBorrar = []
+function borrarIngredientesCena(){
+    menuLuegoBorrar.length = 0;
+    console.log("ingredientesCena",ingredientesDeCenas);
+    var ingCenaBorrar = [];
+    var countPlatos = [];
+    ;
+    //platosCenas = [];
+    //comidasComputadas = 0;    
+    for (i=0; i<ingredientesDeCenas.length;i++){        
+        if(!document.getElementById(`cena${i}`).checked){
+            ingCenaBorrar.push(ingredientesDeCenas[i]);
+        };  
+    };
+    //----------------------------
+    countPlatos = ingCenaBorrar.map(el => {
+        return el.plato;
+    });
+    //------------------------
+    console.log('countPlatos',countPlatos);
+    var comCompParcial = 0;
+    var conteoPlatosBorrados = [];
+    for (i=0; i<countPlatos.length;i++){        
+        if(conteoPlatosBorrados.includes(countPlatos[i])){            
+            ingCenaBorrar[i].comidasComp= comCompParcial+" de "+cenas/integ;
+        }else { 
+            //comidasComputadas += 1;                       
+            var platosMenuLuegoDeBorrar = {
+                plato:countPlatos[i],
+                diasRepet:ingCenaBorrar[i].diasRepet,
+            };
+            conteoPlatosBorrados.push(countPlatos[i])
+            console.log("conteoPlatosBorrados",conteoPlatosBorrados)          
+            comCompParcial += ingCenaBorrar[i].diasRepet;
+            menuLuegoBorrar.push(platosMenuLuegoDeBorrar);
+            var integrantes = document.getElementById('integrantes').value;
+            var integ = parseInt(integrantes);             
+            ingCenaBorrar[i].comidasComp= comCompParcial+" de "+cenas/integ;            
+        };
+    };
+    comidasComputadas = comCompParcial;
+    platosCenas = menuLuegoBorrar.map(el => el.plato);
+    limpiarIngredientes();    
+    ingredientesDeCenas = [...ingCenaBorrar];
+    imprimirListaIngredientes(ingredientesDeCenas);
+    console.log("menuLuegoBorrar",menuLuegoBorrar);
+    //limpiarPlatoInput();
+    tablaPlatosYDias = [...menuLuegoBorrar];
+    //tablaPlatosYDias.pop();
+    imprimirMenu(tablaPlatosYDias);
+    listasDeCompras();
 };
 
 
@@ -503,58 +562,6 @@ function borrarIngredientesMarchas(){
     listasDeCompras();
 };
 
-//  BORRADO
-var menuLuegoBorrar = []
-function borrarIngredientesCena(){
-    menuLuegoBorrar.length = 0;
-    console.log("ingredientesCena",ingredientesDeCenas);
-    var ingCenaBorrar = [];
-    var countPlatos = [];
-    ;
-    //platosCenas = [];
-    //comidasComputadas = 0;    
-    for (i=0; i<ingredientesDeCenas.length;i++){        
-        if(!document.getElementById(`cena${i}`).checked){
-            ingCenaBorrar.push(ingredientesDeCenas[i]);
-        };  
-    };
-    //----------------------------
-    countPlatos = ingCenaBorrar.map(el => {
-        return el.plato;
-    });
-    //------------------------
-    console.log('countPlatos',countPlatos);
-    var comCompParcial = 0;
-    var conteoPlatosBorrados = [];
-    for (i=0; i<countPlatos.length;i++){        
-        if(conteoPlatosBorrados.includes(countPlatos[i])){            
-            ingCenaBorrar[i].comidasComp= comCompParcial+" de "+cenas/integ;
-        }else { 
-            //comidasComputadas += 1;                       
-            var platosMenuLuegoDeBorrar = {
-                plato:countPlatos[i],
-                diasRepet:ingCenaBorrar[i].diasRepet,
-            };
-            conteoPlatosBorrados.push(countPlatos[i])
-            console.log("conteoPlatosBorrados",conteoPlatosBorrados)          
-            comCompParcial += ingCenaBorrar[i].diasRepet;
-            menuLuegoBorrar.push(platosMenuLuegoDeBorrar);
-            var integrantes = document.getElementById('integrantes').value;
-            var integ = parseInt(integrantes);             
-            ingCenaBorrar[i].comidasComp= comCompParcial+" de "+cenas/integ;            
-        };
-    };
-    comidasComputadas = comCompParcial;
-    platosCenas = menuLuegoBorrar.map(el => el.plato);
-    limpiarIngredientes();    
-    ingredientesDeCenas = [...ingCenaBorrar];
-    imprimirListaIngredientes(ingredientesDeCenas);
-    console.log("menuLuegoBorrar",menuLuegoBorrar);
-    //limpiarPlatoInput();
-    tablaPlatosYDias = [...menuLuegoBorrar];
-    imprimirMenu(tablaPlatosYDias);
-    listasDeCompras();
-};
 
 
 
@@ -575,6 +582,11 @@ var cargarListaDesayunos = [];
 var cargarListaMarchas = [];
 var guardarDataExpe = [];
 var cargarListaMenu = [];
+var cargarPlatosCenas = [];
+var cargarComidasP = [];
+var cargarPlatoNombre = '';
+var cargarDiasPlato = 0;
+var cargarComidasComputadas=0;
 
 function guardarDatosExpe(lg,dt,dM,dD,int){
     guardarDataExpe.splice(0,guardarDataExpe.length);
@@ -593,6 +605,23 @@ function guardarTodo(){
     guardar(ingredientesDeDesayuno,"desayunos");
     guardar(ingredientesDeMarchas, "marchas");    
     guardar(tablaPlatosYDias,"tablaMenu");
+    guardar(platosCenas, "platosCenas");
+    guardar(comidasP, "comidasP");
+    guardar(platoNombre, "platoNombreEnMemory");
+    guardar(diasPlato, "diasPlatoEnMemory");
+    guardar(comidasComputadas, "comidasComputadasEnMemory")
+}
+function cargarPlatosCenasYComidasP(){
+    cargarPlatosCenas = JSON.parse(localStorage.getItem("platosCenas"));
+    platosCenas = [...cargarPlatosCenas];
+    cargarComidasP = JSON.parse(localStorage.getItem("comidasP"));
+    comidasP = [...cargarComidasP];
+    cargarPlatoNombre = JSON.parse(localStorage.getItem("platoNombreEnMemory"));
+    platoNombre = cargarPlatoNombre;
+    cargarDiasPlato = JSON.parse(localStorage.getItem("diasPlatoEnMemory"));
+    diasPlato = cargarDiasPlato;
+    cargarComidasComputadas = JSON.parse(localStorage.getItem("comidasComputadasEnMemory"));
+    comidasComputadas = cargarComidasComputadas;
 }
 function cargarMenu(){
     cargarListaMenu = JSON.parse(localStorage.getItem("tablaMenu"));
@@ -635,8 +664,8 @@ function cargarTodo(){
     cargarMarchas();    
     cargarMenu();
     listasDeCompras();
+    cargarPlatosCenasYComidasP();
+    limpiarPlatoInputsinPreguntar();
+    cargaIngrediente=true;
 }
 
-///FALTA CARGAR DATOS EXPEDICION
-/// SEPARAR LISTAS DESAYUNOS Y MARCHAS
-/// DISIGNAR LAS LISTAS ORIGINALES CON EL VALOR DE LAS LISTAS CARGADAS

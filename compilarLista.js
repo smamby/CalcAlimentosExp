@@ -62,9 +62,9 @@ function encontrarItems(lista) {
 };
 var listaFinal = [];
 var ingredienteFinal = [];
-function sumarItemsIguales(lista){
-    for (var item of items){
-        for(var elemento of lista) {
+function sumarItemsIguales(lista){    
+    for (let item of items){
+        for(let elemento of lista) {
             if(item === elemento.ingrediente){
                 if(!ingredienteFinal.includes(item)){
                     ingredienteFinal.push(item);

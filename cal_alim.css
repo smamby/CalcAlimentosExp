@@ -1,4 +1,5 @@
 :root{
+  --super-ultra-dark-violet:rgb(16, 11, 20);
   --ultra-dark-violet:rgb(24, 18, 29);
   --dark-violet: rgb(35, 24, 44);
   --light-violet: rgb(164, 149, 216);
@@ -10,7 +11,7 @@
 }
 body {
     font-family: monospace;
-    background-color: var(--dark-violet);
+    background-color: var(--super-ultra-dark-violet);
     color: var(--light-blue);
     flex-wrap: wrap;
     margin-left: auto;

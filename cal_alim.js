@@ -668,5 +668,6 @@ function cargarTodo(){
     cargarPlatosCenasYComidasP();
     limpiarPlatoInputsinPreguntar();
     cargaIngrediente=true;
+    document.getElementById('plato').focus();
 }
 

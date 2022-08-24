@@ -314,6 +314,7 @@ function borrarIngredientesCena(){
     //limpiarPlatoInput();
     tablaPlatosYDias = [...menuLuegoBorrar];
     //tablaPlatosYDias.pop();
+    cargaIngrediente=true;
     imprimirMenu(tablaPlatosYDias);
     listasDeCompras();
 };

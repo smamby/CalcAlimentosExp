@@ -48,7 +48,9 @@ function buscarYborrarPlatoMenu(){
 }
 
 function condCargarIngredientesPlato() {
-    if (platoCargado===true && datosExpeCargados===true){
+    if (platoCargado===true && datosExpeCargados===true
+        && document.getElementById('plato').value!="" 
+        && document.getElementById('cantidadCenas').value!=""){
         return true;
     } else {        
         cargaPreviaFalse()             

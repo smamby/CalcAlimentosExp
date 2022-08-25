@@ -64,6 +64,7 @@ function corregirListaIngCena(){
     
     tablaPlatosYDias=[...nuevaTabla];
     impMenu(tablaPlatosYDias);
+    borrarIngredientesCena(); //solo para re calcular lista de ingredientes y reimprimir sin borrar nada ya que no hay checked
     listasDeCompras();
     limpiarPlatoInputsinPreguntar();
     document.getElementById('plato').value=tempPlatoNombre;

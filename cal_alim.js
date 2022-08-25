@@ -76,7 +76,7 @@ function cargarPlato(){   //comidasComputadas tabla de hash
             tablaPlatosYDias.pop();
         } else {
             if(document.getElementById('plato').value!="" 
-            && document.getElementById('cantidadCenas').value!=0){        
+            && document.getElementById('cantidadCenas').value!=""){        
                 cargaIngrediente=false;
                 //platoNombre = document.getElementById('plato').value;
                 //diasPlato = parseInt(document.getElementById('cantidadCenas').value);
@@ -255,16 +255,18 @@ function limpiarPlatoInput(){
         document.getElementById('plato').value = "";
         document.getElementById('cantidadCenas').value = "";
         document.getElementById('plato').focus();
+        platoCargado=false;
     };    
 };
 function limpiarPlatoInputsinPreguntar(){
     document.getElementById('plato').value = "";
     document.getElementById('cantidadCenas').value = "";
+    platoCargado=false;
     //document.getElementById('plato').focus();
 };
 
 //  BORRADO cenas
-var menuLuegoBorrar = []
+var menuLuegoBorrar = [];
 function borrarIngredientesCena(){
     menuLuegoBorrar.length = 0;
     console.log("ingredientesCena",ingredientesDeCenas);

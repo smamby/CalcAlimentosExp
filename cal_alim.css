@@ -9,7 +9,12 @@
   --light-red: rgb(190, 50, 50);
   --dark-red: rgb(104, 3, 3);
 }
+html {
+  background-color: var(--ultra-dark-violet);
+  padding: 20px;
+}
 body {
+    padding: 20px;
     font-family: monospace;
     background-color: var(--super-ultra-dark-violet);
     color: var(--light-blue);

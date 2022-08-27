@@ -1,16 +1,17 @@
+//const { CANCELLED } = require("dns");
 
 
 function condPlatoCargado(){
-    alert("Carga los dias de expedicion");
+    swal.fire("Carga los dias de expedicion");
     document.getElementById('marchas').focus();
 };
 
 function cargaPreviaFalse(){
     if (datosExpeCargados===false && platoCargado===false){
-        alert("Carga los dias de expedicion");
+        swal.fire("Carga los dias de expedicion");
         document.getElementById('marchas').focus();        
     } else if (platoCargado===false) {
-        alert("carga algun plato")
+        swal.fire("carga algun plato")
         document.getElementById('plato').focus();                
     };
 };
@@ -18,22 +19,72 @@ function reloadNobraYdiasPlato(){
     platoNombre = document.getElementById('plato').value;
     diasPlato = parseInt(document.getElementById('cantidadCenas').value);
 }
+
+function retornarVerdadero() {
+    return true;
+}
+function exitePlatoONo(){
+    conf("Este plato ya existe",
+    "<CONFIRMAR> para agregar mas dias de este menu."+ 
+    "<CANCELAR> para solo agragar mas ingredientes",
+    retornarVerdadero())
+}
 function existePlato(){
     if(platosCenas.includes(platoNombre)){
-        if (confirm("Este plato ya existe. <ACEPTAR> para agregar mas dias de este menu. <CANCEL> para solo agragar mas ingredientes") === true) {
-            pushPlato()
-            recalcularIngredientes();
-            
-        } else {
-            platoCargado=true;
-            buscarYborrarPlatoMenu();
-        };
+        sweet();
     }else{
         platoCargado=true;
         pushPlato();
     }
     platoCargado=true;
 };
+function sweet(){
+    Swal.fire({
+        title: "Este plato ya existe",
+        text: "<CONFIRMAR> para agregar mas dias de este menu."+ 
+        "<CANCELAR> para solo agragar mas ingredientes",
+        icon: 'info',
+        showDenyButton: true,
+        denyButtonText: 'Cancelar',
+        confirmButtonColor: 'rgb(164, 149, 216)',
+        denyButtonColor: 'rgb(190, 50, 50)',
+        confirmButtonText: 'Confirmar',
+        didClose: () => {
+            focus('ingredientesCenas')
+        }           
+    }).then((response) => {
+        if(response.isConfirmed){
+            pushPlato();
+            recalcularIngredientes()
+            platoCargado=true; 
+            cargaIngrediente=false;           
+            swal.fire({
+                title: `Se aumento la cantidad de veces que repite el menu ${tempPNombre} a ${tempDiasPlato} veces`,
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            }) 
+        } else if (response.isDenied) {
+            swal.fire({
+                title: `Continua ingresando ingrediantes para el plato: ${platoNombre}`,
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            }) 
+            platoCargado=true;
+            buscarYborrarPlatoMenu();
+        } else {
+            swal.fire({
+                title: `Continua ingresando ingrediantes para el plato: ${platoNombre}`,
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            }) 
+            platoCargado=true;
+            buscarYborrarPlatoMenu();
+        }
+    })
+}
 
 function buscarYborrarPlatoMenu(){    
     console.log("plato ya existe ANTES", nuevaTabla);
@@ -66,7 +117,7 @@ function segundaCondCargaIng(){
     if (ingredienteInput!='' && ingUnidadesInput!="" && ingCantidadInput>0){
         return true;
     } else {
-        alert("Completa los datos del ingrediente");
+        swal.fire("Completa los datos del ingrediente");
     };
 };
 function segundaCondCargaIngDes(){
@@ -76,7 +127,7 @@ function segundaCondCargaIngDes(){
     if (ingredienteDesInput!='' && ingUnidadesDesInput!="" && ingCantidadDesInput>0){
         return true;
     } else {
-        alert("Completa los datos del ingrediente");
+        swal.fire("Completa los datos del ingrediente");
     };
 };
 function segundaCondCargaIngMar(){
@@ -86,7 +137,46 @@ function segundaCondCargaIngMar(){
     if (ingredienteMarchInput!='' && ingUnidadesMarchInput!="" && ingCantidadMarchInput>0){
         return true;
     } else {
-        alert("Completa los datos del ingrediente");
+        swal.fire("Completa los datos del ingrediente");
     };
 };
+function focus(id){
+    document.getElementById(id).focus();
+}
+function conf(titulo,texto,func){
+    Swal.fire({
+        title: titulo,
+        text: texto,
+        icon: 'info',
+        //closeModal: false,
+        showDenyButton: true,
+        denyButtonText: 'Cancelar',
+        confirmButtonColor: 'rgb(164, 149, 216)',
+        denyButtonColor: 'rgb(190, 50, 50)',
+        confirmButtonText: 'Confirmar',        
+        didClose: () => {            
+            focus("plato")
+        }            
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            func()            
+            swal.fire({
+                timer: 1,
+                didClose: () => {            
+                    focus("plato")
+                } 
+            })             
+        } else if (result.isDenied) {
+            swal.fire({
+                timer: 1,
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            })           
+        }     
+    })  
+        
+}
+
 

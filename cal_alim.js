@@ -72,7 +72,7 @@ function cargarPlato(){   //comidasComputadas tabla de hash
         reloadNobraYdiasPlato();        
         nuevaTabla = [...tablaPlatosYDias];
         if(!cargaIngrediente){
-            alert('No cargaste ingredientes para el plato anterior'); 
+            swal.fire('No cargaste ingredientes para el plato anterior'); 
             tablaPlatosYDias.pop();
         } else {
             if(document.getElementById('plato').value!="" 
@@ -86,7 +86,7 @@ function cargarPlato(){   //comidasComputadas tabla de hash
                 existePlato();                    
                   
             } else {
-                alert("carga algun plato")
+                swal.fire("carga algun plato")
                 document.getElementById('plato').focus();
             }
         };
@@ -251,13 +251,18 @@ function limpiarIngredientes(){
     document.getElementById('cantidadIngMarchas').value = "";
 }
 function limpiarPlatoInput(){
-    if(confirm("No limpies si no completaste el plato. Completá todos los ingredientes del plato y luego limpiá para ingresar un nuevo plato. CANCELA PARA NO LIMPIAR.")){
-        document.getElementById('plato').value = "";
-        document.getElementById('cantidadCenas').value = "";
-        document.getElementById('plato').focus();
-        platoCargado=false;
-    };    
+    conf("Seguro queres limpiar?",
+    "No limpies si no completaste el plato. Completá todos los ingredientes del plato y luego limpiá para ingresar un nuevo plato. CANCELA PARA NO LIMPIAR.",
+    limpiarPlato);  
+    document.getElementById('plato').focus();
+}
+function limpiarPlato(){
+    document.getElementById('plato').value = "";
+    document.getElementById('cantidadCenas').value = "";
+    document.getElementById('plato').focus();
+    platoCargado=false;        
 };
+
 function limpiarPlatoInputsinPreguntar(){
     document.getElementById('plato').value = "";
     document.getElementById('cantidadCenas').value = "";

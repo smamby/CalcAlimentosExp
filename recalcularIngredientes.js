@@ -7,9 +7,10 @@ function recalcularIngredientes(){
 }
 var itemsRec = [];
 function encontrarItemsRec(lista) {
+    itemsRec = [];
     let itemsList = [];
     itemsList = lista.map(el=> el.plato);
-    console.log(itemsList);
+    console.log("itemList",itemsList);
     itemsList.forEach(item => {
         if(!itemsRec.includes(item)){
             itemsRec.push(item);
@@ -20,6 +21,8 @@ function encontrarItemsRec(lista) {
 var listaFinalRec = [];
 var platoListaFinalRec = [];
 function sumarItemsIgualesRec(lista){
+    listaFinalRec = [];
+    platoListaFinalRec = [];
     for (let item of itemsRec){
         for(let elemento of lista) {
             if(item === elemento.plato){
@@ -33,7 +36,10 @@ function sumarItemsIgualesRec(lista){
         };   
     };
 };
+var tempPNombre = "";
+var tempDiasPlato = 0;
 function corregirListaIngCena(){
+    tempDiasPlato = 0;
     var ingRep = 0;
     for (let elem of listaFinalRec) {
         let elePlato = elem.plato;
@@ -67,6 +73,8 @@ function corregirListaIngCena(){
     borrarIngredientesCena(); //solo para re calcular lista de ingredientes y reimprimir sin borrar nada ya que no hay checked
     listasDeCompras();
     limpiarPlatoInputsinPreguntar();
+    tempDiasPlato = tempBuscarPlatoEnTabla;
+    tempPNombre = tempPlatoNombre;
     document.getElementById('plato').value=tempPlatoNombre;
     document.getElementById('cantidadCenas').value=tempBuscarPlatoEnTabla;
 }

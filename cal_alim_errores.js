@@ -1,18 +1,30 @@
 //const { CANCELLED } = require("dns");
 
 
-function condPlatoCargado(){
-    swal.fire("Carga los dias de expedicion");
-    document.getElementById('marchas').focus();
+function condPlatoCargado(){    
+    swal.fire({
+        title: "Carga los dias de expedicion",
+        didClose: () => {            
+            focus('marchas')
+        } 
+    });
 };
 
 function cargaPreviaFalse(){
     if (datosExpeCargados===false && platoCargado===false){
-        swal.fire("Carga los dias de expedicion");
-        document.getElementById('marchas').focus();        
-    } else if (platoCargado===false) {
-        swal.fire("carga algun plato")
-        document.getElementById('plato').focus();                
+        swal.fire({
+            title: "Carga los dias de expedicion",
+            didClose: () => {            
+                focus('marchas')
+            } 
+        });        
+    } else if (platoCargado===false) {        
+        swal.fire({
+            title: "Carga algun plato",
+            didClose: () => {            
+                focus('plato')
+            } 
+        });                
     };
 };
 function reloadNobraYdiasPlato(){
@@ -117,7 +129,12 @@ function segundaCondCargaIng(){
     if (ingredienteInput!='' && ingUnidadesInput!="" && ingCantidadInput>0){
         return true;
     } else {
-        swal.fire("Completa los datos del ingrediente");
+        wal.fire({
+            title: "Completa los datos del ingrediente",
+            didClose: () => {            
+                focus("ingredientesCenas")
+            } 
+        });        
     };
 };
 function segundaCondCargaIngDes(){
@@ -127,7 +144,12 @@ function segundaCondCargaIngDes(){
     if (ingredienteDesInput!='' && ingUnidadesDesInput!="" && ingCantidadDesInput>0){
         return true;
     } else {
-        swal.fire("Completa los datos del ingrediente");
+        wal.fire({
+            title: "Completa los datos del ingrediente",
+            didClose: () => {            
+                focus("ingredientesCenas")
+            } 
+        });
     };
 };
 function segundaCondCargaIngMar(){
@@ -137,7 +159,12 @@ function segundaCondCargaIngMar(){
     if (ingredienteMarchInput!='' && ingUnidadesMarchInput!="" && ingCantidadMarchInput>0){
         return true;
     } else {
-        swal.fire("Completa los datos del ingrediente");
+        wal.fire({
+            title: "Completa los datos del ingrediente",
+            didClose: () => {            
+                focus("ingredientesCenas")
+            } 
+        });
     };
 };
 function focus(id){
@@ -154,9 +181,7 @@ function conf(titulo,texto,func){
         confirmButtonColor: 'rgb(164, 149, 216)',
         denyButtonColor: 'rgb(190, 50, 50)',
         confirmButtonText: 'Confirmar',        
-        didClose: () => {            
-            focus("plato")
-        }            
+                   
     })
     .then((result) => {
         if (result.isConfirmed) {
@@ -174,7 +199,14 @@ function conf(titulo,texto,func){
                     focus("ingredientesCenas")
                 } 
             })           
-        }     
+        } else {
+            swal.fire({
+                timer: 1,
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            })           
+        }    
     })  
         
 }

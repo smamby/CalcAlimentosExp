@@ -72,8 +72,13 @@ function cargarPlato(){   //comidasComputadas tabla de hash
         reloadNobraYdiasPlato();        
         nuevaTabla = [...tablaPlatosYDias];
         if(!cargaIngrediente){
-            swal.fire('No cargaste ingredientes para el plato anterior'); 
-            tablaPlatosYDias.pop();
+            swal.fire({
+                title: 'No cargaste ingredientes para el plato anterior',
+                didClose: () => {            
+                    focus("ingredientesCenas")
+                } 
+            }); 
+            tablaPlatosYDias.pop();            
         } else {
             if(document.getElementById('plato').value!="" 
             && document.getElementById('cantidadCenas').value!=""){        
@@ -253,8 +258,7 @@ function limpiarIngredientes(){
 function limpiarPlatoInput(){
     conf("Seguro queres limpiar?",
     "No limpies si no completaste el plato. Completá todos los ingredientes del plato y luego limpiá para ingresar un nuevo plato. CANCELA PARA NO LIMPIAR.",
-    limpiarPlato);  
-    document.getElementById('plato').focus();
+    limpiarPlato);    
 }
 function limpiarPlato(){
     document.getElementById('plato').value = "";

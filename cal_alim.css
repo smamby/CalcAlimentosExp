@@ -44,6 +44,14 @@ body {
     max-width: 588px;
     text-align: center;
 }
+.fechaYLugar{
+  border: 1px solid var(--light-violet);
+  padding: 10px;
+}
+#datosInicio{
+  border: 1px solid var(--light-violet);
+  padding: 10px;
+}
 .contDiasExp{
   display: flex;
   justify-content: center;

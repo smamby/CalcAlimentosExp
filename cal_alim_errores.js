@@ -4,6 +4,9 @@
 function condPlatoCargado(){    
     swal.fire({
         title: "Carga los dias de expedicion",
+        color: "rgb(190,150,120)",
+        background: "rgb(35, 24, 44)",
+        confirmButtonColor: 'rgb(164, 149, 216)',
         didClose: () => {            
             focus('marchas')
         } 
@@ -14,6 +17,9 @@ function cargaPreviaFalse(){
     if (datosExpeCargados===false && platoCargado===false){
         swal.fire({
             title: "Carga los dias de expedicion",
+            color: "rgb(190,150,120)",
+            background: "rgb(35, 24, 44)",
+            confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus('marchas')
             } 
@@ -21,6 +27,9 @@ function cargaPreviaFalse(){
     } else if (platoCargado===false) {        
         swal.fire({
             title: "Carga algun plato",
+            color: "rgb(190,150,120)",
+            background: "rgb(35, 24, 44)",
+            confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus('plato')
             } 
@@ -58,7 +67,9 @@ function sweet(){
         icon: 'info',
         showDenyButton: true,
         denyButtonText: 'Cancelar',
-        confirmButtonColor: 'rgb(164, 149, 216)',
+        color: "rgb(190,150,120)",
+        background: "rgb(35, 24, 44)",
+        confirmButtonColor: 'rgb(164, 149, 216)',        
         denyButtonColor: 'rgb(190, 50, 50)',
         confirmButtonText: 'Confirmar',
         didClose: () => {
@@ -72,6 +83,9 @@ function sweet(){
             cargaIngrediente=false;           
             swal.fire({
                 title: `Se aumento la cantidad de veces que repite el menu ${tempPNombre} a ${tempDiasPlato} veces`,
+                color: "rgb(190,150,120)",
+                background: "rgb(35, 24, 44)",
+                confirmButtonColor: 'rgb(164, 149, 216)',
                 didClose: () => {            
                     focus("ingredientesCenas")
                 } 
@@ -79,6 +93,9 @@ function sweet(){
         } else if (response.isDenied) {
             swal.fire({
                 title: `Continua ingresando ingrediantes para el plato: ${platoNombre}`,
+                color: "rgb(190,150,120)",
+                background: "rgb(35, 24, 44)",
+                confirmButtonColor: 'rgb(164, 149, 216)',
                 didClose: () => {            
                     focus("ingredientesCenas")
                 } 
@@ -88,6 +105,9 @@ function sweet(){
         } else {
             swal.fire({
                 title: `Continua ingresando ingrediantes para el plato: ${platoNombre}`,
+                color: "rgb(190,150,120)",
+                background: "rgb(35, 24, 44)",
+                confirmButtonColor: 'rgb(164, 149, 216)',
                 didClose: () => {            
                     focus("ingredientesCenas")
                 } 
@@ -129,8 +149,11 @@ function segundaCondCargaIng(){
     if (ingredienteInput!='' && ingUnidadesInput!="" && ingCantidadInput>0){
         return true;
     } else {
-        wal.fire({
+        swal.fire({
             title: "Completa los datos del ingrediente",
+            color: "rgb(190,150,120)",
+            background: "rgb(35, 24, 44)",
+            confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus("ingredientesCenas")
             } 
@@ -144,8 +167,11 @@ function segundaCondCargaIngDes(){
     if (ingredienteDesInput!='' && ingUnidadesDesInput!="" && ingCantidadDesInput>0){
         return true;
     } else {
-        wal.fire({
+        swal.fire({
             title: "Completa los datos del ingrediente",
+            color: "rgb(190,150,120)",
+            background: "rgb(35, 24, 44)",
+            confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus("ingredientesCenas")
             } 
@@ -159,8 +185,11 @@ function segundaCondCargaIngMar(){
     if (ingredienteMarchInput!='' && ingUnidadesMarchInput!="" && ingCantidadMarchInput>0){
         return true;
     } else {
-        wal.fire({
+        swal.fire({
             title: "Completa los datos del ingrediente",
+            color: "rgb(190,150,120)",
+            background: "rgb(35, 24, 44)",
+            confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus("ingredientesCenas")
             } 
@@ -174,12 +203,14 @@ function conf(titulo,texto,func){
     Swal.fire({
         title: titulo,
         text: texto,
-        icon: 'info',
-        //closeModal: false,
-        showDenyButton: true,
-        denyButtonText: 'Cancelar',
+        //icon: 'info',
+        color: "rgb(190,150,120)",
+        background: "rgb(35, 24, 44)",
         confirmButtonColor: 'rgb(164, 149, 216)',
         denyButtonColor: 'rgb(190, 50, 50)',
+        //closeModal: false,
+        showDenyButton: true,
+        denyButtonText: 'Cancelar',        
         confirmButtonText: 'Confirmar',        
                    
     })
@@ -193,7 +224,7 @@ function conf(titulo,texto,func){
                 } 
             })             
         } else if (result.isDenied) {
-            swal.fire({
+            swal.fire({                 
                 timer: 1,
                 didClose: () => {            
                     focus("ingredientesCenas")

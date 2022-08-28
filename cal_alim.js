@@ -74,6 +74,9 @@ function cargarPlato(){   //comidasComputadas tabla de hash
         if(!cargaIngrediente){
             swal.fire({
                 title: 'No cargaste ingredientes para el plato anterior',
+                color: "rgb(190,150,120)",
+                background: "rgb(35, 24, 44)",
+                confirmButtonColor: 'rgb(164, 149, 216)',
                 didClose: () => {            
                     focus("ingredientesCenas")
                 } 
@@ -91,8 +94,17 @@ function cargarPlato(){   //comidasComputadas tabla de hash
                 existePlato();                    
                   
             } else {
-                swal.fire("carga algun plato")
-                document.getElementById('plato').focus();
+                swal.fire({
+                    title: '"carga algun plato"',
+                    color: "rgb(190,150,120)",
+                    background: "rgb(35, 24, 44)",
+                    confirmButtonColor: 'rgb(164, 149, 216)',
+                    didClose: () => {            
+                        focus("plato")
+                    } 
+                }); 
+                // swal.fire("carga algun plato")
+                // document.getElementById('plato').focus();
             }
         };
     }else {

@@ -55,11 +55,7 @@ function corregirListaIngCena(){
         }
     }
     document.getElementById('cantidadCenas').value = ingRep;
-    imprimirListaIngredientes(ingredientesDeCenas);
-    // borrarIngredientesCena();
-    // tablaPlatosYDias.pop();
-    // borrarIngredientesCena();
-    // tablaPlatosYDias.pop();
+    imprimirListaIngredientes(ingredientesDeCenas); 
     let tempPlatoNombre=document.getElementById('plato').value;
     let tempBuscarPlatoEnTabla= 0;  
         for(i of nuevaTabla){
@@ -70,7 +66,7 @@ function corregirListaIngCena(){
     
     tablaPlatosYDias=[...nuevaTabla];
     impMenu(tablaPlatosYDias);
-    borrarIngredientesCena(); //solo para re calcular lista de ingredientes y reimprimir sin borrar nada ya que no hay checked
+    borrarIngredientesCena();
     listasDeCompras();
     limpiarPlatoInputsinPreguntar();
     tempDiasPlato = tempBuscarPlatoEnTabla;

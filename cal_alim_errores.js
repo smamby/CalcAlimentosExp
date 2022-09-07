@@ -1,6 +1,3 @@
-//const { CANCELLED } = require("dns");
-
-
 function condPlatoCargado(){    
     swal.fire({
         title: "Carga los dias de expedicion",
@@ -120,14 +117,10 @@ function sweet(){
 
 function buscarYborrarPlatoMenu(){    
     console.log("plato ya existe ANTES", nuevaTabla);
-    console.log("plato ya existe ANTES", tablaPlatosYDias); 
-    // var buscar = nuevaTabla.map(el=> el.plato == platoNombre && el.diasRepet == diasPlato)
-    // var indiceBuscado = buscar.findIndex(el => el ==true);
-    // nuevaTabla.splice(indiceBuscado,1);
-    // console.log("plato ya existe", nuevaTabla);     
+    console.log("plato ya existe ANTES", tablaPlatosYDias);    
     tablaPlatosYDias = [...nuevaTabla];
     cargaIngrediente=true;
-    comidasComputadas = comidasComputadas //- diasPlato;
+    comidasComputadas = comidasComputadas 
 }
 
 function condCargarIngredientesPlato() {
@@ -174,7 +167,7 @@ function segundaCondCargaIngDes(){
             confirmButtonColor: 'rgb(164, 149, 216)',
             didClose: () => {            
                 focus("ingredientesCenas")
-            } 
+            }
         });
     };
 };
@@ -203,16 +196,13 @@ function conf(titulo,texto,func){
     Swal.fire({
         title: titulo,
         text: texto,
-        //icon: 'info',
         color: "rgb(190,150,120)",
         background: "rgb(35, 24, 44)",
         confirmButtonColor: 'rgb(164, 149, 216)',
         denyButtonColor: 'rgb(190, 50, 50)',
-        //closeModal: false,
         showDenyButton: true,
         denyButtonText: 'Cancelar',        
-        confirmButtonText: 'Confirmar',        
-                   
+        confirmButtonText: 'Confirmar',
     })
     .then((result) => {
         if (result.isConfirmed) {
@@ -238,8 +228,7 @@ function conf(titulo,texto,func){
                 } 
             })           
         }    
-    })  
-        
+    })        
 }
 
 

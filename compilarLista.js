@@ -120,10 +120,8 @@ function alistarParaImprimir(){
     console.table(Kiosco);
     console.table(Otros);
 };
-//var clasesLowerCase = [] ;
 
 function CrearListas(clases){
-    //clasesLowerCase = clases.map(el=> el.toLowerCase());
     for (var clase of clases){
         var table = document.createElement("table");
         table.className=`tableCompra${clase}`;
@@ -153,22 +151,19 @@ function CrearListas(clases){
         var tdUnidad = document.createElement("td");
         rowCompra.appendChild(tdUnidad);
         tdUnidad.append("Unidades");
-    
-        //for (var clase of clasesLowerCase){
-            for(var elem of window[clase]){
-                var row = tbody.insertRow(); 
-                var clasificTC = row.insertCell(0);
-                var ingredTC =  row.insertCell(1);
-                var subtotalTC = row.insertCell(2);
-                var unidadTC = row.insertCell(3);
-                clasificTC.append(elem.clasificacion);
-                ingredTC.append(elem.ingrediente);
-                subtotalTC.append(elem.subtotal);
-                unidadTC.append(elem.unidad);
-            }
-        //}
-    }       
-}
+        for(var elem of window[clase]){
+            var row = tbody.insertRow(); 
+            var clasificTC = row.insertCell(0);
+            var ingredTC =  row.insertCell(1);
+            var subtotalTC = row.insertCell(2);
+            var unidadTC = row.insertCell(3);
+            clasificTC.append(elem.clasificacion);
+            ingredTC.append(elem.ingrediente);
+            subtotalTC.append(elem.subtotal);
+            unidadTC.append(elem.unidad);
+        };        
+    };
+};
 
 function titleLista(){    
     var titulo = document.getElementById("titleE");
@@ -182,19 +177,8 @@ function listasDeComprasImpresion(){
     limpiarIngredientes()
     alistarParaImprimir();    
     titleLista();
-
-    CrearListas(clases)
-}
-//var imp = document.getElementById("#contListasCompra tbody");
+    CrearListas(clases);
+};
 function imprimirListasDeCompras(){
-    //listasDeCompras()
     window.print()
-}
-// function imprSelec(nombre){
-//     var ficha = document.getElementById(nombre);
-//     var win = window.open(' ', 'popimpr');
-//     win.document.write(ficha.innerHTML);
-//     win.document.close();
-//     win.print();
-//     win.close();
-// }
+};

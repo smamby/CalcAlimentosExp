@@ -8,6 +8,7 @@
   --light-blue: rgb(174, 226, 215);
   --light-red: rgb(190, 50, 50);
   --dark-red: rgb(104, 3, 3);
+  --light-orange: rgb(243, 205, 149);
 }
 .btn-href{
   
@@ -88,6 +89,9 @@ h1{
 #menuComidas, #menuDesayuno, #menuMarchas{
   font-size: large;
   height: 74px;
+}
+b, #dias, #comidasYPorciones, #labelDesayunos, #labelMarchas{
+  color: var(--light-orange);
 }
 #contFormComida{
   display: flex;

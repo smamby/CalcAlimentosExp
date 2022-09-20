@@ -369,13 +369,15 @@ function imprimirListaIngredientesDeDesayunos(lista){
         var ingredienteCell = row.insertCell(1);
         var unidadesCell = row.insertCell(2);
         var cantidadCell = row.insertCell(3);
-        var checkboxForDelete = row.insertCell(4)
+        var repiteDes = row.insertCell(4);
+        var checkboxForDelete = row.insertCell(5);
         
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
         ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
         unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
+        repiteDes.innerHTML = listaDeIngredientes[i].diasRepet;
         checkboxForDelete.append(checkBox);
         console.log("i",i);
 
@@ -463,13 +465,15 @@ function imprimirListaIngredientesDeMarchas(lista){
         var ingredienteCell = row.insertCell(1);
         var unidadesCell = row.insertCell(2);
         var cantidadCell = row.insertCell(3);
-        var checkboxForDelete = row.insertCell(4)
+        var repiteDes = row.insertCell(4);
+        var checkboxForDelete = row.insertCell(5)
         
         
         platoCell.innerHTML = listaDeIngredientes[i].plato;
         ingredienteCell.innerHTML = listaDeIngredientes[i].ingrediente;
         unidadesCell.innerHTML = listaDeIngredientes[i].unidad;
         cantidadCell.innerHTML = listaDeIngredientes[i].cantidad;
+        repiteDes.innerHTML = listaDeIngredientes[i].diasRepet;
         checkboxForDelete.append(checkBox);
         console.log("i",i);
 

@@ -1,3 +1,16 @@
+function styleLigth(){
+    document.body.classList.toggle('ligth');
+    if(document.body.classList=='ligth'){
+        document.getElementById("imgBtnTheme").src="./assets/img/btnTheme dark.png"
+        document.getElementById("imgHeader").classList='headLigth'
+        document.documentElement.style.backgroundColor = "rgb(241, 209, 102)";
+    } else {
+        document.getElementById("imgBtnTheme").src="./assets/img/btnTheme ligth.png"
+        document.getElementById("imgHeader").classList='imgHeader';
+        document.documentElement.style.backgroundColor = "rgb(24, 18, 29)";
+    };
+};
+
 var lugar = "";
 var fecha = "";
 var diasDescanso = 0;

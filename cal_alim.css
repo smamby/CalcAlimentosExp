@@ -148,6 +148,9 @@ b, #dias, #comidasYPorciones, #labelDesayunos, #labelMarchas{
   width: 100%;
   justify-content: space-between;
 }
+#cantidadCenas{
+  width: 179px;
+}
 #cenas {
   display: flex;
   width: 70%;  

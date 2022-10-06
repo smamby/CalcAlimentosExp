@@ -131,10 +131,15 @@ body {
 #contComida, #desayunos, #ComidaMarchas{
   border: 1px solid var(--light-violet);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
 }
 h1{
   height: 24px;
+}
+#contIngDes, #contIngMar{
+  width: 100%;
+  justify-content: stretch;
+  margin: 0px;
 }
 #menuComidas, #menuDesayuno, #menuMarchas{
   font-size: large;
@@ -156,14 +161,20 @@ b, #dias, #comidasYPorciones, #labelDesayunos, #labelMarchas{
   width: 70%;  
 }
 #platos{
-  display: block;  
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;  
+  justify-content: stretch;
 }
 #ingPlatos{
   display: flex;
   justify-content: space-evenly;
   width: 50%;
   flex-wrap: wrap;
+}
+#cantidadCenas{
+  display: flex;
+  justify-content: stretch;
+  width: 179px;
 }
 #contUnidades,#contCantidad{
   display: flex;
@@ -175,25 +186,27 @@ b, #dias, #comidasYPorciones, #labelDesayunos, #labelMarchas{
 #cantidadIngCenas{
   padding-left: 40px;
 }
+
 #SectionTabMenu {
   margin-left: 5px;
   display: block;
   width: 30%;
-  border: 1px solid var(--light-violet);
+  border: 3px solid var(--colorHTML);
 }
 #col1,#col2,#col3{
-  border-bottom: 1px solid var(--light-violet);  
+  border-bottom: 2px solid var(--colorHTML);  
 }
 p{
   padding-bottom: 2px;
   color: var(--grey-violet);
 }
 
+
 .contUniDesay, .contUniMarcha{
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 0px 0px 10px 0px;
+  padding: 0px 0px 10px 0px;;
 }
 .contIngDesayuno{
   display: flex;
@@ -213,6 +226,11 @@ p{
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
+}
+.table{
+  background-color: var(--ultra-dark-violet);
+  margin-bottom: 15px;
+  border-radius: 0 0 5px 5px;
 }
 #labelUnidades{
   display: flex;  
@@ -270,7 +288,10 @@ input[type="number"] {
   max-width: 40px;
 }
 #cantidadCenas{
-  max-width: 150px;
+  max-width: 170px;
+}
+#ingredientesCenas{
+  width: 180px;
 }
 #marcha-text{
   display: inline-block;
@@ -303,7 +324,7 @@ tbody {
   height: 19px;
   border: 1px solid var(--light-red);
   margin: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   max-width: 200px;
 }
 tr >th {

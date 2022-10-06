@@ -1,6 +1,6 @@
 swal.fire({
     title: 'Video tutorial',
-    html: '<a class="btn-href" href="https://drive.google.com/file/d/1LTg-mecQHPZelc3zB0Z_dzGIFo7Qw34e/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="visibility:none;"><img src="./assets/img/tutorial.jpg" alt="" style="width:200px;"></a>',
+    html: '<a class="btn-href" href="https://drive.google.com/file/d/1LTg-mecQHPZelc3zB0Z_dzGIFo7Qw34e/view?usp=sharingQQZZ" target="_blank" rel="noopener noreferrer" style="visibility:none;"><img src="./assets/img/tutorial.jpg" alt="" style="width:200px;"></a>',
     customClass: {
         html: 'SWAL-link-html',
     },
